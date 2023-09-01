@@ -1,12 +1,9 @@
-import { IAnyObject, IntegrationError } from '../types/index'
-import { globalVar, HTTP_CODE, ERRORTYPES } from '../shared/index'
 import { logger } from './logger'
 import { nativeToString, variableTypeDetection } from './is'
+import { HTTP_CODE } from '../types/http'
+import { ERROR_TYPES, IntegrationError } from '../types/error'
 
-export function getLocationHref(): string {
-  if (typeof document === 'undefined' || document.location == null) return ''
-  return document.location.href
-}
+
 
 // 用到所有事件名称
 type TotalEventName = keyof GlobalEventHandlersEventMap | keyof XMLHttpRequestEventTargetEventMap | keyof WindowEventMap
@@ -78,29 +75,6 @@ export function getFunctionName(fn: unknown): string {
   return fn.name || defaultFunctionName
 }
 
-// 函数防抖
-/**
- *
- * ../param fn 需要防抖的函数
- * ../param delay 防抖的时间间隔
- * ../param isImmediate 是否需要立即执行，默认为false，第一次是不执行的
- * ../returns 返回一个包含防抖功能的函数
- */
-// export const debounce = (fn: voidFun, delay: number, isImmediate = false): voidFun => {
-//   let timer = null
-//   return function (...args: any) {
-//     if (isImmediate) {
-//       fn.apply(this, args)
-//       isImmediate = false
-//       return
-//     }
-//     clearTimeout(timer)
-//     timer = setTimeout(() => {
-//       fn.apply(this, args)
-//     }, delay)
-//   }
-// }
-
 // 函数节流
 /**
  *
@@ -112,6 +86,7 @@ export const throttle = (fn: Function, delay: number): Function => {
   let canRun = true
   return function (...args: any) {
     if (!canRun) return
+    // @ts-ignore
     fn.apply(this, args)
     canRun = false
     setTimeout(() => {
@@ -148,12 +123,6 @@ export function toStringValidateOption(target: any, targetName: string, expectTy
   return false
 }
 
-export function slientConsoleScope(callback: Function) {
-  globalVar.isLogAddBreadcrumb = false
-  callback()
-  globalVar.isLogAddBreadcrumb = true
-}
-
 export function generateUUID(): string {
   let d = new Date().getTime()
   const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
@@ -188,15 +157,7 @@ export function isHttpFail(code: number) {
  * @param query
  */
 export function setUrlQuery(url: string, query: object) {
-  const queryArr = []
-  Object.keys(query).forEach((k) => {
-    queryArr.push(`${k}=${query[k]}`)
-  })
-  if (url.indexOf('?') !== -1) {
-    url = `${url}&${queryArr.join('&')}`
-  } else {
-    url = `${url}?${queryArr.join('&')}`
-  }
+ 
   return url
 }
 
@@ -207,12 +168,18 @@ export function interceptStr(str: string, interceptLength: number): string {
   return ''
 }
 
+
+export function getLocationHref(): string {
+  if (typeof document === 'undefined' || document.location == null) return ''
+  return document.location.href
+}
+
 /**
  * 获取wx当前route的方法
  * 必须是在进入Page或Component构造函数内部才能够获取到currentPages
  * 否则都是在注册Page和Component时执行的代码，此时url默认返回'App'
  */
-export function getCurrentRoute() {
+export function getWxCurrentRoute() {
   if (!variableTypeDetection.isFunction(getCurrentPages)) {
     return ''
   }
@@ -220,15 +187,27 @@ export function getCurrentRoute() {
   if (!pages.length) {
     return 'App'
   }
-  const currentPage = pages.pop()
-  return setUrlQuery(currentPage.route, currentPage.options)
+  let url = ''
+  const currentPage = pages.pop();
+  if (!currentPage) return ''
+  const { route, options } = currentPage;
+  const queryArr: string[] = [];
+  Object.keys(options).forEach((k) => {
+    queryArr.push(`${k}=${options[k]}`)
+  })
+  if (route.indexOf('?') !== -1) {
+    url = `${route}&${queryArr.join('&')}`
+  } else {
+    url = `${route}?${queryArr.join('&')}`
+  }
+  return url
 }
 
 /**
  * 解析字符串错误信息，返回message、name、stack
  * @param str error string
  */
-export function parseErrorString(str: string): IntegrationError {
+export function parseErrorString(str: string): IntegrationError | null {
   const splitLine: string[] = str.split('\n')
   if (splitLine.length < 2) return null
   if (splitLine[0].indexOf('MiniProgramError') !== -1) {
@@ -236,7 +215,7 @@ export function parseErrorString(str: string): IntegrationError {
   }
   const message = splitLine.splice(0, 1)[0]
   const name = splitLine.splice(0, 1)[0].split(':')[0]
-  const stack = []
+  const stack: any[] = []
   splitLine.forEach((errorLine: string) => {
     const regexpGetFun = /at\s+([\S]+)\s+\(/ // 获取 [ 函数名 ]
     const regexGetFile = /\(([^)]+)\)/ // 获取 [ 有括号的文件 , 没括号的文件 ]
@@ -254,7 +233,7 @@ export function parseErrorString(str: string): IntegrationError {
     const lineInfo = fileURLMatch.split(':')
     stack.push({
       args: [], // 请求参数
-      func: funcNameMatch || ERRORTYPES.UNKNOWN_FUNCTION, // 前端分解后的报错
+      func: funcNameMatch || ERROR_TYPES.UNKNOWN_FUNCTION, // 前端分解后的报错
       column: Number(lineInfo.pop()), // 前端分解后的列
       line: Number(lineInfo.pop()), // 前端分解后的行
       url: lineInfo.join(':') // 前端分解后的URL

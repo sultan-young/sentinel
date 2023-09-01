@@ -1,41 +1,35 @@
-import { ERRORTYPES } from '../shared/index'
-import { BreadcrumbPushData } from './breadcrumb'
-import { DeviceInfo, EActionType } from './track'
+import { DeviceInfo, ERROR_LEVEL, ERROR_TYPES } from './index'
 
-export interface AuthInfo {
-  apikey?: string
-  trackKey?: string
+export interface SdkInfo {
   sdkVersion: string
   sdkName: string
-  trackerId: string
 }
 
 export interface TransportDataType {
-  authInfo: AuthInfo
-  breadcrumb?: BreadcrumbPushData[]
-  data?: FinalReportType
-  record?: any[]
+  sdkInfo: SdkInfo
   deviceInfo?: DeviceInfo
+  reportData?: ReportDataType
 }
 
-export type FinalReportType = ReportDataType | TrackReportData
 
-interface ICommonDataType {
-  // 是否是埋点数据
-  isTrackData?: boolean
-}
-
-export interface ReportDataType extends ICommonDataType {
-  type?: string
-  message?: string
-  url: string
-  name?: string
+export interface ReportDataType {
+  // 错误类型
+  type?: ERROR_TYPES
+  // 错误堆栈
   stack?: any
-  time?: number
+  message?: string
+  // 发生错误的页面地址
+  url: string
+  // 错误名称type
+  name?: string
+  // 发生错误的时间
+  occurrenceTime?: number
+  // 错误id
   errorId?: number
-  level: string
-  // ajax
+  level: ERROR_LEVEL
+  // 接口耗时
   elapsedTime?: number
+
   request?: {
     httpType?: string
     traceId?: string
@@ -47,28 +41,4 @@ export interface ReportDataType extends ICommonDataType {
     status: number
     data: string
   }
-  // vue
-  componentName?: string
-  propsData?: any
-  // logError 手动报错 MITO.log
-  customTag?: string
-}
-
-export interface TrackReportData extends ICommonDataType {
-  // uuid
-  id?: string
-  // 埋点code 一般由人为传进来，可以自定义规范
-  trackId?: string
-  // 埋点类型
-  actionType: EActionType
-  // 埋点开始时间
-  startTime?: number
-  // 埋点停留时间
-  durationTime?: number
-  // 上报时间
-  trackTime?: number
-}
-
-export function isReportDataType(data: ReportDataType | TrackReportData): data is ReportDataType {
-  return (<TrackReportData>data).actionType === undefined && !data.isTrackData
 }

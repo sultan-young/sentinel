@@ -1,6 +1,5 @@
 import { EVENTTYPES, ERRORTYPES, WxAppEvents, WxPageEvents } from '../shared/index'
 import { getLocationHref, getTimestamp } from './helpers'
-import { setFlag } from './global'
 import { ReportDataType, InitOptions } from '../types/index'
 import { Severity } from './Severity'
 
