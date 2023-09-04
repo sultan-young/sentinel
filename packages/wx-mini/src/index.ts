@@ -4,12 +4,10 @@ import { setupReplace } from './load'
 import { initOptions, log } from '@hpf2e/sentinel-core'
 import { sendTrackData, track } from './initiative'
 import { SDK_NAME, SDK_VERSION } from '@hpf2e/sentinel-shared'
-import { MitoVue } from 'packages/vue/src'
-import { errorBoundaryReport } from '@hpf2e/sentinel-react'
 export function init(options: InitOptions = {}) {
   if (!isWxMiniEnv) return
   initOptions(options)
   setupReplace()
   Object.assign(wx, { mitoLog: log, SDK_NAME, SDK_VERSION })
 }
-export { log, sendTrackData, track, MitoVue, errorBoundaryReport }
+export { log, sendTrackData, track }
