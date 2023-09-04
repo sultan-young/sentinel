@@ -1,5 +1,5 @@
 {
-  "name": "@hpf2e/sentinel-react",
+  "name": "hp-f2e-sentinel-react",
   "version": "2.1.54",
   "description": "A SDK For Report React ErrorBoundary",
   "author": "cjinhuo",
@@ -11,8 +11,8 @@
     "dist"
   ],
   "dependencies": {
-    "@hpf2e/sentinel-core": "2.1.54",
-    "@hpf2e/sentinel-utils": "2.1.54",
-    "@hpf2e/sentinel-shared": "2.1.54"
+    "hp-f2e-sentinel-core": "2.1.54",
+    "hp-f2e-sentinel-utils": "2.1.54",
+    "hp-f2e-sentinel-shared": "2.1.54"
   }
 }

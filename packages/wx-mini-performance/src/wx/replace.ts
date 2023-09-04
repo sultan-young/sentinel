@@ -1,4 +1,4 @@
-import { replaceOld, isEmptyObject } from '@hpf2e/sentinel-utils'
+import { replaceOld, isEmptyObject } from 'hp-f2e-sentinel-utils'
 import Store from '../core/store'
 import HandleEvents from './handleEvents'
 import { WxPerformanceItemType, WxListenerTypes } from '../constant'

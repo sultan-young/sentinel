@@ -1,5 +1,5 @@
-import { Severity } from '@hpf2e/sentinel-utils'
-import { BREADCRUMBTYPES } from '@hpf2e/sentinel-shared'
+import { Severity } from 'hp-f2e-sentinel-utils'
+import { BREADCRUMBTYPES } from 'hp-f2e-sentinel-shared'
 import { ReportDataType } from './transportData'
 import { Replace } from './replace'
 import { TNumStrObj } from './common'

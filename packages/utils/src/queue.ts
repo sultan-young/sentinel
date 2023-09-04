@@ -1,4 +1,4 @@
-import { voidFun } from '@hpf2e/sentinel-shared'
+import { voidFun } from 'hp-f2e-sentinel-shared'
 import { _global } from './global'
 export class Queue {
   private micro: Promise<void>

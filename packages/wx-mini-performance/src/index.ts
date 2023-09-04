@@ -1,4 +1,4 @@
-import { isWxMiniEnv } from '@hpf2e/sentinel-utils'
+import { isWxMiniEnv } from 'hp-f2e-sentinel-utils'
 import { initBatteryInfo, initMemoryWarning, initNetworkInfo, initWxHideReport, initWxPerformance, initWxNetwork } from './wx/index'
 import Store from './core/store'
 import { version } from '../package.json'

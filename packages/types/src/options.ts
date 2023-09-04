@@ -1,4 +1,4 @@
-import { Breadcrumb } from '@hpf2e/sentinel-core'
+import { Breadcrumb } from 'hp-f2e-sentinel-core'
 import { BreadcrumbPushData } from './breadcrumb'
 import { TransportDataType } from './transportData'
 type CANCEL = null | undefined | boolean

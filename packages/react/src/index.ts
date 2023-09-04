@@ -1,7 +1,7 @@
-import { BREADCRUMBTYPES, ERRORTYPES } from '@hpf2e/sentinel-shared'
-import { isError, extractErrorStack, Severity } from '@hpf2e/sentinel-utils'
-import { breadcrumb, transportData } from '@hpf2e/sentinel-core'
-import { ReportDataType } from '@hpf2e/sentinel-types'
+import { BREADCRUMBTYPES, ERRORTYPES } from 'hp-f2e-sentinel-shared'
+import { isError, extractErrorStack, Severity } from 'hp-f2e-sentinel-utils'
+import { breadcrumb, transportData } from 'hp-f2e-sentinel-core'
+import { ReportDataType } from 'hp-f2e-sentinel-types'
 
 /**
  * 收集react ErrorBoundary中的错误对象

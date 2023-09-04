@@ -2,10 +2,10 @@ export * from './handleEvents'
 export * from './load'
 export * from './replace'
 import { setupReplace } from './load'
-import { initOptions, log } from '@hpf2e/sentinel-core'
-import { _global } from '@hpf2e/sentinel-utils'
-import { SDK_VERSION, SDK_NAME } from '@hpf2e/sentinel-shared'
-import { InitOptions } from '@hpf2e/sentinel-types'
+import { initOptions, log } from 'hp-f2e-sentinel-core'
+import { _global } from 'hp-f2e-sentinel-utils'
+import { SDK_VERSION, SDK_NAME } from 'hp-f2e-sentinel-shared'
+import { InitOptions } from 'hp-f2e-sentinel-types'
 function webInit(options: InitOptions = {}): void {
   if (!('XMLHttpRequest' in _global) || options.disabled) return
   initOptions(options)

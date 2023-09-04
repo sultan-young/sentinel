@@ -1,5 +1,5 @@
-import { EVENTTYPES, WxEvents } from '@hpf2e/sentinel-shared'
-import { getFlag, getFunctionName, logger, nativeTryCatch, setFlag } from '@hpf2e/sentinel-utils'
+import { EVENTTYPES, WxEvents } from 'hp-f2e-sentinel-shared'
+import { getFlag, getFunctionName, logger, nativeTryCatch, setFlag } from 'hp-f2e-sentinel-utils'
 export interface ReplaceHandler {
   type: EVENTTYPES | WxEvents
   callback: ReplaceCallback

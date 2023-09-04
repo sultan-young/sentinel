@@ -1,4 +1,4 @@
-import { ERRORTYPES, BREADCRUMBTYPES } from '@hpf2e/sentinel-shared'
+import { ERRORTYPES, BREADCRUMBTYPES } from 'hp-f2e-sentinel-shared'
 import {
   isError,
   extractErrorStack,
@@ -8,10 +8,10 @@ import {
   isWxMiniEnv,
   Severity,
   getCurrentRoute
-} from '@hpf2e/sentinel-utils'
+} from 'hp-f2e-sentinel-utils'
 import { transportData } from './transportData'
 import { breadcrumb } from './breadcrumb'
-import { TNumStrObj } from '@hpf2e/sentinel-types'
+import { TNumStrObj } from 'hp-f2e-sentinel-types'
 
 interface LogTypes {
   message: TNumStrObj

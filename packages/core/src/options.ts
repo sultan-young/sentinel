@@ -1,5 +1,5 @@
-import { InitOptions } from '@hpf2e/sentinel-types'
-import { generateUUID, toStringValidateOption, validateOption, _support, setSilentFlag, logger } from '@hpf2e/sentinel-utils'
+import { InitOptions } from 'hp-f2e-sentinel-types'
+import { generateUUID, toStringValidateOption, validateOption, _support, setSilentFlag, logger } from 'hp-f2e-sentinel-utils'
 import { breadcrumb } from './breadcrumb'
 import { transportData } from './transportData'
 export class Options {

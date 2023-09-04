@@ -1,7 +1,7 @@
-import { EVENTTYPES, ERRORTYPES, WxAppEvents, WxPageEvents } from '@hpf2e/sentinel-shared'
+import { EVENTTYPES, ERRORTYPES, WxAppEvents, WxPageEvents } from 'hp-f2e-sentinel-shared'
 import { getLocationHref, getTimestamp } from './helpers'
 import { setFlag } from './global'
-import { ReportDataType, InitOptions } from '@hpf2e/sentinel-types'
+import { ReportDataType, InitOptions } from 'hp-f2e-sentinel-types'
 import { Severity } from './Severity'
 
 /**

@@ -1,7 +1,7 @@
 import { HandleEvents } from './handleEvents'
-import { htmlElementAsString, Severity } from '@hpf2e/sentinel-utils'
-import { EVENTTYPES, BREADCRUMBTYPES } from '@hpf2e/sentinel-shared'
-import { breadcrumb, handleConsole } from '@hpf2e/sentinel-core'
+import { htmlElementAsString, Severity } from 'hp-f2e-sentinel-utils'
+import { EVENTTYPES, BREADCRUMBTYPES } from 'hp-f2e-sentinel-shared'
+import { breadcrumb, handleConsole } from 'hp-f2e-sentinel-core'
 import { addReplaceHandler } from './replace'
 export function setupReplace(): void {
   addReplaceHandler({

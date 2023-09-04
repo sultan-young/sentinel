@@ -1,4 +1,4 @@
-# @hpf2e/sentinel-browser
+# hp-f2e-sentinel-browser
 
 - [x] 🔨监听请求错误
 - [x] 🔨console

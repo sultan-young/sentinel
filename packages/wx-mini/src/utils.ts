@@ -1,5 +1,5 @@
-import { setUrlQuery, variableTypeDetection } from '@hpf2e/sentinel-utils'
-import { DeviceInfo } from '@hpf2e/sentinel-types'
+import { setUrlQuery, variableTypeDetection } from 'hp-f2e-sentinel-utils'
+import { DeviceInfo } from 'hp-f2e-sentinel-types'
 
 /**
  * 后退时需要计算当前页面地址

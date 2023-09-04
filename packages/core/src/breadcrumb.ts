@@ -1,6 +1,6 @@
-import { BREADCRUMBTYPES, BREADCRUMBCATEGORYS } from '@hpf2e/sentinel-shared'
-import { logger, validateOption, getTimestamp, slientConsoleScope, _support } from '@hpf2e/sentinel-utils'
-import { BreadcrumbPushData, InitOptions } from '@hpf2e/sentinel-types'
+import { BREADCRUMBTYPES, BREADCRUMBCATEGORYS } from 'hp-f2e-sentinel-shared'
+import { logger, validateOption, getTimestamp, slientConsoleScope, _support } from 'hp-f2e-sentinel-utils'
+import { BreadcrumbPushData, InitOptions } from 'hp-f2e-sentinel-types'
 
 export class Breadcrumb {
   maxBreadcrumbs = 10
@@ -79,9 +79,8 @@ export class Breadcrumb {
     }
   }
   bindOptions(options: InitOptions = {}): void {
-    const { maxBreadcrumbs, beforePushBreadcrumb } = options
-    validateOption(maxBreadcrumbs, 'maxBreadcrumbs', 'number') && (this.maxBreadcrumbs = maxBreadcrumbs)
-    validateOption(beforePushBreadcrumb, 'beforePushBreadcrumb', 'function') && (this.beforePushBreadcrumb = beforePushBreadcrumb)
+    this.maxBreadcrumbs = options.maxBreadcrumbs
+    this.beforePushBreadcrumb = options.beforePushBreadcrumb
   }
 }
 const breadcrumb = _support.breadcrumb || (_support.breadcrumb = new Breadcrumb())

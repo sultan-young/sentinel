@@ -1,4 +1,4 @@
-import { EVENTTYPES } from '@hpf2e/sentinel-shared'
+import { EVENTTYPES } from 'hp-f2e-sentinel-shared'
 import { HandleWxConsoleEvents, HandleNetworkEvents, HandleWxEvents, HandleWxPageEvents } from './handleWxEvents'
 import { addReplaceHandler, replaceApp, replacePage, replaceComponent, replaceBehavior } from './replace'
 

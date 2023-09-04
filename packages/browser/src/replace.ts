@@ -8,10 +8,10 @@ import {
   isExistProperty,
   variableTypeDetection,
   supportsHistory
-} from '@hpf2e/sentinel-utils'
-import { transportData, options, setTraceId, triggerHandlers, ReplaceHandler, subscribeEvent } from '@hpf2e/sentinel-core'
-import { EMethods, MITOHttp, MITOXMLHttpRequest } from '@hpf2e/sentinel-types'
-import { voidFun, EVENTTYPES, HTTPTYPE, HTTP_CODE } from '@hpf2e/sentinel-shared'
+} from 'hp-f2e-sentinel-utils'
+import { transportData, options, setTraceId, triggerHandlers, ReplaceHandler, subscribeEvent } from 'hp-f2e-sentinel-core'
+import { EMethods, MITOHttp, MITOXMLHttpRequest } from 'hp-f2e-sentinel-types'
+import { voidFun, EVENTTYPES, HTTPTYPE, HTTP_CODE } from 'hp-f2e-sentinel-shared'
 
 function isFilterHttpUrl(url: string) {
   return options.filterXhrUrlRegExp && options.filterXhrUrlRegExp.test(url)

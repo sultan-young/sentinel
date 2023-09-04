@@ -1,6 +1,6 @@
-# @hpf2e/sentinel-core
+# hp-f2e-sentinel-core
 
-给`@hpf2e/sentinel`提供一系列的核心类与函数
+给`hp-f2e-sentinel`提供一系列的核心类与函数
 
 ### Breadcrumb
 收集用户行为
