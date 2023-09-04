@@ -1,0 +1,19 @@
+{
+  "name": "@hpf2e/sentinel-core",
+  "version": "2.1.54",
+  "description": "@hpf2e/sentinel-core",
+  "author": "cjinhuo",
+  "license": "MIT",
+  "main": "dist/core.js",
+  "module": "dist/core.esm.js",
+  "types": "dist/core.d.ts",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@hpf2e/sentinel-core": "2.1.54",
+    "@hpf2e/sentinel-types": "2.1.54",
+    "@hpf2e/sentinel-utils": "2.1.54",
+    "@hpf2e/sentinel-shared": "2.1.54"
+  }
+}

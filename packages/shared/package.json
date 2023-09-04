@@ -1,0 +1,13 @@
+{
+  "name": "@hpf2e/sentinel-shared",
+  "version": "2.1.54",
+  "description": "@hpf2e/sentinel-shared",
+  "author": "cjinhuo",
+  "license": "MIT",
+  "main": "dist/shared.js",
+  "module": "dist/shared.esm.js",
+  "types": "dist/shared.d.ts",
+  "files": [
+    "dist"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "@hpf2e/sentinel-wx-mini",
+  "version": "2.1.54",
+  "description": "A SDK For sentineling wx-mini Errors",
+  "author": "cjinhuo",
+  "license": "MIT",
+  "main": "dist/wx-mini.js",
+  "module": "dist/wx-mini.js",
+  "types": "dist/wx-mini.d.ts",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@hpf2e/sentinel-core": "2.1.54",
+    "@hpf2e/sentinel-utils": "2.1.54",
+    "@hpf2e/sentinel-shared": "2.1.54",
+    "@hpf2e/sentinel-types": "2.1.54",
+    "@types/wechat-miniprogram": "^3.1.0"
+  }
+}

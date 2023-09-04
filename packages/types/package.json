@@ -1,0 +1,19 @@
+{
+  "name": "@hpf2e/sentinel-types",
+  "version": "2.1.54",
+  "description": "@hpf2e/sentinel-types",
+  "author": "cjinhuo",
+  "license": "MIT",
+  "main": "dist/types.js",
+  "module": "dist/types.esm.js",
+  "types": "dist/types.d.ts",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@hpf2e/sentinel-core": "2.1.54",
+    "@hpf2e/sentinel-utils": "2.1.54",
+    "@hpf2e/sentinel-browser": "2.1.54",
+    "@hpf2e/sentinel-shared": "2.1.54"
+  }
+}
