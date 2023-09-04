@@ -4,7 +4,7 @@ import { setupReplace } from './load'
 import { initOptions, log } from '@hpf2e/sentinel-core'
 import { sendTrackData, track } from './initiative'
 import { SDK_NAME, SDK_VERSION } from '@hpf2e/sentinel-shared'
-import { MitoVue } from '@hpf2e/sentinel-vue'
+import { MitoVue } from 'packages/vue/src'
 import { errorBoundaryReport } from '@hpf2e/sentinel-react'
 export function init(options: InitOptions = {}) {
   if (!isWxMiniEnv) return
