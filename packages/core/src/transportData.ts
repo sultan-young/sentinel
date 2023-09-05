@@ -1,8 +1,8 @@
-import { _support, validateOption, logger, isBrowserEnv, isWxMiniEnv, variableTypeDetection, Queue, isEmpty } from 'hp-f2e-sentinel-utils'
+import { _support, validateOption, logger, isBrowserEnv, isWxMiniEnv, variableTypeDetection, Queue, isEmpty } from '@hpf2e/sentinel-utils'
 import { createErrorId } from './errorId'
-import { SDK_NAME, SDK_VERSION } from 'hp-f2e-sentinel-shared'
+import { SDK_NAME, SDK_VERSION } from '@hpf2e/sentinel-shared'
 import { breadcrumb } from './breadcrumb'
-import { AuthInfo, TransportDataType, EMethods, InitOptions, isReportDataType, DeviceInfo, FinalReportType } from 'hp-f2e-sentinel-types'
+import { AuthInfo, TransportDataType, EMethods, InitOptions, isReportDataType, DeviceInfo, FinalReportType } from '@hpf2e/sentinel-types'
 /**
  * 用来传输数据类，包含img标签、xhr请求
  * 功能：支持img请求和xhr请求、可以断点续存（保存在localstorage），
@@ -136,28 +136,16 @@ export class TransportData {
   }
 
   bindOptions(options: InitOptions = {}): void {
-    const {
-      dsn,
-      beforeDataReport,
-      apikey,
-      configReportXhr,
-      backTrackerId,
-      trackDsn,
-      trackKey,
-      configReportUrl,
-      useImgUpload,
-      configReportWxRequest
-    } = options
-    validateOption(apikey, 'apikey', 'string') && (this.apikey = apikey)
-    validateOption(trackKey, 'trackKey', 'string') && (this.trackKey = trackKey)
-    validateOption(dsn, 'dsn', 'string') && (this.errorDsn = dsn)
-    validateOption(trackDsn, 'trackDsn', 'string') && (this.trackDsn = trackDsn)
-    validateOption(useImgUpload, 'useImgUpload', 'boolean') && (this.useImgUpload = useImgUpload)
-    validateOption(beforeDataReport, 'beforeDataReport', 'function') && (this.beforeDataReport = beforeDataReport)
-    validateOption(configReportXhr, 'configReportXhr', 'function') && (this.configReportXhr = configReportXhr)
-    validateOption(backTrackerId, 'backTrackerId', 'function') && (this.backTrackerId = backTrackerId)
-    validateOption(configReportUrl, 'configReportUrl', 'function') && (this.configReportUrl = configReportUrl)
-    validateOption(configReportWxRequest, 'configReportWxRequest', 'function') && (this.configReportWxRequest = configReportWxRequest)
+    options.apikey && (this.apikey = options.apikey)
+    options.trackKey && (this.trackKey = options.trackKey)
+    options.dsn && (this.errorDsn = options.dsn)
+    options.trackDsn && (this.trackDsn = options.trackDsn)
+    options.useImgUpload && (this.useImgUpload = options.useImgUpload)
+    options.beforeDataReport && (this.beforeDataReport = options.beforeDataReport)
+    options.configReportXhr && (this.configReportXhr = options.configReportXhr)
+    options.backTrackerId && (this.backTrackerId = options.backTrackerId)
+    options.configReportUrl && (this.configReportUrl = options.configReportUrl)
+    options.configReportWxRequest && (this.configReportWxRequest = options.configReportWxRequest)
   }
   /**
    * 监控错误上报的请求函数

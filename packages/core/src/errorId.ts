@@ -1,6 +1,6 @@
-import { getAppId, isWxMiniEnv, variableTypeDetection } from 'hp-f2e-sentinel-utils'
-import { ERRORTYPES, EVENTTYPES } from 'hp-f2e-sentinel-shared'
-import { ReportDataType } from 'hp-f2e-sentinel-types'
+import { getAppId, isWxMiniEnv, variableTypeDetection } from '@hpf2e/sentinel-utils'
+import { ERRORTYPES, EVENTTYPES } from '@hpf2e/sentinel-shared'
+import { ReportDataType } from '@hpf2e/sentinel-types'
 import { options } from './options'
 const allErrorNumber: unknown = {}
 /**

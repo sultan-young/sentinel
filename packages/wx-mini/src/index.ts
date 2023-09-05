@@ -1,9 +1,9 @@
-import { InitOptions } from 'hp-f2e-sentinel-types'
-import { isWxMiniEnv } from 'hp-f2e-sentinel-utils'
+import { InitOptions } from '@hpf2e/sentinel-types'
+import { isWxMiniEnv } from '@hpf2e/sentinel-utils'
 import { setupReplace } from './load'
-import { initOptions, log } from 'hp-f2e-sentinel-core'
+import { initOptions, log } from '@hpf2e/sentinel-core'
 import { sendTrackData, track } from './initiative'
-import { SDK_NAME, SDK_VERSION } from 'hp-f2e-sentinel-shared'
+import { SDK_NAME, SDK_VERSION } from '@hpf2e/sentinel-shared'
 export function init(options: InitOptions = {}) {
   if (!isWxMiniEnv) return
   initOptions(options)

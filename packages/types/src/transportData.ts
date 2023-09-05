@@ -1,4 +1,4 @@
-import { ERRORTYPES } from 'hp-f2e-sentinel-shared'
+import { ERRORTYPES } from '@hpf2e/sentinel-shared'
 import { BreadcrumbPushData } from './breadcrumb'
 import { DeviceInfo, EActionType } from './track'
 

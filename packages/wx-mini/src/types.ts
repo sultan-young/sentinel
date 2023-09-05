@@ -1,4 +1,4 @@
-import { IAnyObject } from 'hp-f2e-sentinel-types'
+import { IAnyObject } from '@hpf2e/sentinel-types'
 
 export interface MiniRoute {
   from: string

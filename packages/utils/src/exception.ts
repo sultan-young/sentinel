@@ -1,4 +1,4 @@
-import { voidFun } from 'hp-f2e-sentinel-shared'
+import { voidFun } from '@hpf2e/sentinel-shared'
 
 /**
  * 原生try函数

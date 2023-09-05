@@ -1,5 +1,5 @@
-import { IAnyObject, IntegrationError } from 'hp-f2e-sentinel-types'
-import { globalVar, HTTP_CODE, ERRORTYPES } from 'hp-f2e-sentinel-shared'
+import { IAnyObject, IntegrationError } from '@hpf2e/sentinel-types'
+import { globalVar, HTTP_CODE, ERRORTYPES } from '@hpf2e/sentinel-shared'
 import { logger } from './logger'
 import { nativeToString, variableTypeDetection } from './is'
 

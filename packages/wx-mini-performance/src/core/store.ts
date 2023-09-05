@@ -1,5 +1,5 @@
 import { noop, getPageUrl, getDeviceId } from '../utils'
-import { generateUUID, validateOption, toStringValidateOption } from 'hp-f2e-sentinel-utils'
+import { generateUUID, validateOption, toStringValidateOption } from '@hpf2e/sentinel-utils'
 import { WxPerformanceDataType, WxPerformanceItemType } from '../constant'
 import Event from './event'
 import {

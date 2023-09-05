@@ -1,7 +1,7 @@
 {
-  "name": "hp-f2e-sentinel-shared",
+  "name": "@hpf2e/sentinel-shared",
   "version": "2.1.54",
-  "description": "hp-f2e-sentinel-shared",
+  "description": "@hpf2e/sentinel-shared",
   "author": "cjinhuo",
   "license": "MIT",
   "main": "dist/shared.js",

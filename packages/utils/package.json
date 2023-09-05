@@ -1,7 +1,7 @@
 {
-  "name": "hp-f2e-sentinel-utils",
+  "name": "@hpf2e/sentinel-utils",
   "version": "2.1.54",
-  "description": "hp-f2e-sentinel-utils",
+  "description": "@hpf2e/sentinel-utils",
   "author": "cjinhuo",
   "license": "MIT",
   "main": "dist/utils.js",
@@ -11,9 +11,9 @@
     "dist"
   ],
   "dependencies": {
-    "hp-f2e-sentinel-core": "2.1.54",
-    "hp-f2e-sentinel-browser": "2.1.54",
-    "hp-f2e-sentinel-shared": "2.1.54",
-    "hp-f2e-sentinel-types": "2.1.54"
+    "@hpf2e/sentinel-core": "2.1.54",
+    "@hpf2e/sentinel-browser": "2.1.54",
+    "@hpf2e/sentinel-shared": "2.1.54",
+    "@hpf2e/sentinel-types": "2.1.54"
   }
 }

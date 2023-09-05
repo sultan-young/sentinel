@@ -1,7 +1,7 @@
 {
-  "name": "hp-f2e-sentinel-types",
+  "name": "@hpf2e/sentinel-types",
   "version": "2.1.54",
-  "description": "hp-f2e-sentinel-types",
+  "description": "sentinel-types",
   "author": "cjinhuo",
   "license": "MIT",
   "main": "dist/types.js",
@@ -11,9 +11,12 @@
     "dist"
   ],
   "dependencies": {
-    "hp-f2e-sentinel-core": "2.1.54",
-    "hp-f2e-sentinel-utils": "2.1.54",
-    "hp-f2e-sentinel-browser": "2.1.54",
-    "hp-f2e-sentinel-shared": "2.1.54"
+    "@hpf2e/sentinel-core": "2.1.54",
+    "@hpf2e/sentinel-utils": "2.1.54",
+    "@hpf2e/sentinel-browser": "2.1.54",
+    "@hpf2e/sentinel-shared": "2.1.54"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }

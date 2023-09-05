@@ -1,4 +1,4 @@
-import { setUrlQuery, variableTypeDetection, generateUUID } from 'hp-f2e-sentinel-utils'
+import { setUrlQuery, variableTypeDetection, generateUUID } from '@hpf2e/sentinel-utils'
 import { STORAGE_KEY } from '../constant'
 
 export function noop() {}

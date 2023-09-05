@@ -1,6 +1,6 @@
-import { EActionType, ITrackBaseParam, TrackReportData } from 'hp-f2e-sentinel-types'
-import { transportData } from 'hp-f2e-sentinel-core'
-import { generateUUID, getTimestamp } from 'hp-f2e-sentinel-utils'
+import { EActionType, ITrackBaseParam, TrackReportData } from '@hpf2e/sentinel-types'
+import { transportData } from '@hpf2e/sentinel-core'
+import { generateUUID, getTimestamp } from '@hpf2e/sentinel-utils'
 
 export function track(actionType: EActionType, param: ITrackBaseParam) {
   const data = {

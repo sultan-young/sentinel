@@ -1,6 +1,6 @@
-import { BREADCRUMBTYPES, ERRORTYPES, globalVar } from 'hp-f2e-sentinel-shared'
-import { getLocationHref, getTimestamp, Severity, fromHttpStatus, SpanStatus, interceptStr } from 'hp-f2e-sentinel-utils'
-import { ReportDataType, MITOHttp, Replace, ResourceErrorTarget } from 'hp-f2e-sentinel-types'
+import { BREADCRUMBTYPES, ERRORTYPES, globalVar } from '@hpf2e/sentinel-shared'
+import { getLocationHref, getTimestamp, Severity, fromHttpStatus, SpanStatus, interceptStr } from '@hpf2e/sentinel-utils'
+import { ReportDataType, MITOHttp, Replace, ResourceErrorTarget } from '@hpf2e/sentinel-types'
 import { getRealPath } from './errorId'
 import { breadcrumb } from './breadcrumb'
 

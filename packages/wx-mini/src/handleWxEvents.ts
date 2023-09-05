@@ -1,6 +1,6 @@
-import { BREADCRUMBTYPES, ERRORTYPES } from 'hp-f2e-sentinel-shared'
-import { breadcrumb, handleConsole, httpTransform, transportData, options as sdkOptions } from 'hp-f2e-sentinel-core'
-import { ReportDataType, Replace, MITOHttp } from 'hp-f2e-sentinel-types'
+import { BREADCRUMBTYPES, ERRORTYPES } from '@hpf2e/sentinel-shared'
+import { breadcrumb, handleConsole, httpTransform, transportData, options as sdkOptions } from '@hpf2e/sentinel-core'
+import { ReportDataType, Replace, MITOHttp } from '@hpf2e/sentinel-types'
 import {
   extractErrorStack,
   getCurrentRoute,
@@ -11,7 +11,7 @@ import {
   unknownToString,
   _support,
   Severity
-} from 'hp-f2e-sentinel-utils'
+} from '@hpf2e/sentinel-utils'
 import { getWxMiniDeviceInfo, targetAsString } from './utils'
 import { MiniRoute, WxLifeCycleBreadcrumb, WxOnShareAppMessageBreadcrumb, WxOnTabItemTapBreadcrumb } from './types'
 import { ELinstenerTypes } from './constant'

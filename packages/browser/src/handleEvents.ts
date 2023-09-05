@@ -1,7 +1,7 @@
-import { BREADCRUMBTYPES, ERRORTYPES, ERROR_TYPE_RE, HTTP_CODE } from 'hp-f2e-sentinel-shared'
-import { transportData, breadcrumb, resourceTransform, httpTransform, options } from 'hp-f2e-sentinel-core';
-import { getLocationHref, getTimestamp, isError, parseUrlToObj, extractErrorStack, unknownToString, Severity } from 'hp-f2e-sentinel-utils'
-import { ReportDataType, Replace, MITOHttp, ResourceErrorTarget } from 'hp-f2e-sentinel-types'
+import { BREADCRUMBTYPES, ERRORTYPES, ERROR_TYPE_RE, HTTP_CODE } from '@hpf2e/sentinel-shared'
+import { transportData, breadcrumb, resourceTransform, httpTransform, options } from '@hpf2e/sentinel-core';
+import { getLocationHref, getTimestamp, isError, parseUrlToObj, extractErrorStack, unknownToString, Severity } from '@hpf2e/sentinel-utils'
+import { ReportDataType, Replace, MITOHttp, ResourceErrorTarget } from '@hpf2e/sentinel-types'
 
 const HandleEvents = {
   /**

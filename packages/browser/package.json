@@ -1,5 +1,5 @@
 {
-  "name": "hp-f2e-sentinel-browser",
+  "name": "@hpf2e/sentinel-browser",
   "version": "2.1.54",
   "description": "A SDK For sentineling Browser Errors",
   "author": "cjinhuo",
@@ -11,10 +11,10 @@
     "dist"
   ],
   "dependencies": {
-    "hp-f2e-sentinel-utils": "2.1.54",
-    "hp-f2e-sentinel-core": "2.1.54",
-    "hp-f2e-sentinel-shared": "2.1.54",
-    "hp-f2e-sentinel-types": "2.1.54"
+    "@hpf2e/sentinel-utils": "2.1.54",
+    "@hpf2e/sentinel-core": "2.1.54",
+    "@hpf2e/sentinel-shared": "2.1.54",
+    "@hpf2e/sentinel-types": "2.1.54"
   },
   "buildOptions": {
     "formats": [

@@ -1,8 +1,8 @@
-import { EVENTTYPES, WxEvents } from 'hp-f2e-sentinel-shared'
-import { Breadcrumb, TransportData, Options } from 'hp-f2e-sentinel-core'
+import { EVENTTYPES, WxEvents } from '@hpf2e/sentinel-shared'
+import { Breadcrumb, TransportData, Options } from '@hpf2e/sentinel-core'
 import { Logger } from './logger'
 import { variableTypeDetection } from './is'
-import { DeviceInfo } from 'hp-f2e-sentinel-types'
+import { DeviceInfo } from '@hpf2e/sentinel-types'
 
 // MITO的全局变量
 export interface MitoSupport {

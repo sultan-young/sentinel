@@ -1,4 +1,4 @@
-# hp-f2e-sentinel-wx-mini
+# @hpf2e/sentinel-wx-mini
 
 ### 微信小程序
 

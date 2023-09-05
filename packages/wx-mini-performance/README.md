@@ -3,11 +3,11 @@
 ## 一、安装
 使用npm
 ```bash
-npm i hp-f2e-sentinel-wx-mini-performance
+npm i @hpf2e/sentinel-wx-mini-performance
 ```
 使用yarn
 ```bash
-yarn add hp-f2e-sentinel-wx-mini-performance
+yarn add @hpf2e/sentinel-wx-mini-performance
 ```
 
 <br/>

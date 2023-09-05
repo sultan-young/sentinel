@@ -1,5 +1,5 @@
-import { InitOptions } from 'hp-f2e-sentinel-types'
-import { generateUUID, toStringValidateOption, validateOption, _support, setSilentFlag, logger } from 'hp-f2e-sentinel-utils'
+import { InitOptions } from '@hpf2e/sentinel-types'
+import { generateUUID, toStringValidateOption, validateOption, _support, setSilentFlag, logger } from '@hpf2e/sentinel-utils'
 import { breadcrumb } from './breadcrumb'
 import { transportData } from './transportData'
 export class Options {
@@ -30,53 +30,29 @@ export class Options {
     this.enableTraceId = false
   }
   bindOptions(options: InitOptions = {}): void {
-    const {
-      beforeAppAjaxSend,
-      enableTraceId,
-      filterXhrUrlRegExp,
-      traceIdFieldName,
-      throttleDelayTime,
-      includeHttpUrlTraceIdRegExp,
-      appOnLaunch,
-      appOnShow,
-      appOnHide,
-      pageOnUnload,
-      pageOnShow,
-      pageOnHide,
-      onPageNotFound,
-      onShareAppMessage,
-      onShareTimeline,
-      onTabItemTap,
-      wxNavigateToMiniProgram,
-      triggerWxEvent,
-      maxDuplicateCount,
-      onRouteChange
-    } = options
-    validateOption(beforeAppAjaxSend, 'beforeAppAjaxSend', 'function') && (this.beforeAppAjaxSend = beforeAppAjaxSend)
+    options.beforeAppAjaxSend && (this.beforeAppAjaxSend = options.beforeAppAjaxSend)
     // wx-mini hooks
-    validateOption(appOnLaunch, 'appOnLaunch', 'function') && (this.appOnLaunch = appOnLaunch)
-    validateOption(appOnShow, 'appOnShow', 'function') && (this.appOnShow = appOnShow)
-    validateOption(appOnHide, 'appOnHide', 'function') && (this.appOnHide = appOnHide)
-    validateOption(pageOnUnload, 'pageOnUnload', 'function') && (this.pageOnUnload = pageOnUnload)
-    validateOption(pageOnShow, 'pageOnShow', 'function') && (this.pageOnShow = pageOnShow)
-    validateOption(pageOnHide, 'pageOnHide', 'function') && (this.pageOnHide = pageOnHide)
-    validateOption(onPageNotFound, 'onPageNotFound', 'function') && (this.onPageNotFound = onPageNotFound)
-    validateOption(onShareAppMessage, 'onShareAppMessage', 'function') && (this.onShareAppMessage = onShareAppMessage)
-    validateOption(onShareTimeline, 'onShareTimeline', 'function') && (this.onShareTimeline = onShareTimeline)
-    validateOption(onTabItemTap, 'onTabItemTap', 'function') && (this.onTabItemTap = onTabItemTap)
-    validateOption(wxNavigateToMiniProgram, 'wxNavigateToMiniProgram', 'function') &&
-      (this.wxNavigateToMiniProgram = wxNavigateToMiniProgram)
-    validateOption(triggerWxEvent, 'triggerWxEvent', 'function') && (this.triggerWxEvent = triggerWxEvent)
+    options.appOnLaunch && (this.appOnLaunch = options.appOnLaunch)
+    options.appOnShow && (this.appOnShow = options.appOnShow)
+    options.appOnHide && (this.appOnHide = options.appOnHide)
+    options.pageOnUnload && (this.pageOnUnload = options.pageOnUnload)
+    options.pageOnShow && (this.pageOnShow = options.pageOnShow)
+    options.pageOnHide && (this.pageOnHide = options.pageOnHide)
+    options.onPageNotFound && (this.onPageNotFound = options.onPageNotFound)
+    options.onShareAppMessage && (this.onShareAppMessage = options.onShareAppMessage)
+    options.onShareTimeline && (this.onShareTimeline = options.onShareTimeline)
+    options.onTabItemTap && (this.onTabItemTap = options.onTabItemTap)
+    options.wxNavigateToMiniProgram && (this.wxNavigateToMiniProgram = options.wxNavigateToMiniProgram)
+    options.triggerWxEvent && (this.triggerWxEvent = options.triggerWxEvent)
     // browser hooks
-    validateOption(onRouteChange, 'onRouteChange', 'function') && (this.onRouteChange = onRouteChange)
+    options.onRouteChange && (this.onRouteChange = options.onRouteChange)
 
-    validateOption(enableTraceId, 'enableTraceId', 'boolean') && (this.enableTraceId = enableTraceId)
-    validateOption(traceIdFieldName, 'traceIdFieldName', 'string') && (this.traceIdFieldName = traceIdFieldName)
-    validateOption(throttleDelayTime, 'throttleDelayTime', 'number') && (this.throttleDelayTime = throttleDelayTime)
-    validateOption(maxDuplicateCount, 'maxDuplicateCount', 'number') && (this.maxDuplicateCount = maxDuplicateCount)
-    toStringValidateOption(filterXhrUrlRegExp, 'filterXhrUrlRegExp', '[object RegExp]') && (this.filterXhrUrlRegExp = filterXhrUrlRegExp)
-    toStringValidateOption(includeHttpUrlTraceIdRegExp, 'includeHttpUrlTraceIdRegExp', '[object RegExp]') &&
-      (this.includeHttpUrlTraceIdRegExp = includeHttpUrlTraceIdRegExp)
+    options.enableTraceId && (this.enableTraceId = options.enableTraceId)
+    options.traceIdFieldName && (this.traceIdFieldName = options.traceIdFieldName)
+    options.throttleDelayTime && (this.throttleDelayTime = options.throttleDelayTime)
+    options.maxDuplicateCount && (this.maxDuplicateCount = options.maxDuplicateCount)
+    options.filterXhrUrlRegExp && (this.filterXhrUrlRegExp = options.filterXhrUrlRegExp)
+    options.includeHttpUrlTraceIdRegExp && (this.includeHttpUrlTraceIdRegExp = options.includeHttpUrlTraceIdRegExp)
   }
 }
 

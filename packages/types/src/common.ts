@@ -1,4 +1,4 @@
-import { HTTPTYPE } from 'hp-f2e-sentinel-shared'
+import { HTTPTYPE } from '@hpf2e/sentinel-shared'
 
 export interface IAnyObject {
   [key: string]: any
