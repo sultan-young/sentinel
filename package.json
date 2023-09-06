@@ -5,13 +5,13 @@
   "main": "index.js",
   "scripts": {
     "build:watch": "rollup --c ./rollup.config.js --watch",
-    "build:wx": "rollup -c",
+    "build": "rollup -c",
     "dev": "nodemon ./dist/index.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@microsoft/api-extractor": "^7.13.2",
+    "@microsoft/api-extractor": "^7.36.4",
     "@rollup/plugin-commonjs": "^25.0.4",
     "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^15.2.1",

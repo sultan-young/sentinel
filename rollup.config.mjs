@@ -28,8 +28,6 @@ const targetName = basename(targetPackageDir)
 const masterVersion = require('./package.json')
 // dist目录
 const outputDist = resolve(targetPackageDir, `dist`)
-console.log('masterVersion: ', outputDist, `${outputDist}/${targetName}.esm.js`)
-// console.log('targetName: ', targetName);
 
 const common_config = {
 	input: `${targetPackageDir}/src/index.ts`,

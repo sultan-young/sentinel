@@ -10,7 +10,6 @@ let rollupWatch = false
 run()
 async function run() {
   const argv = getArgv()
-  console.log(argv)
   // accept npm run build web browser...
   const paramTarget = argv._
   LOCALDIR = argv.local
@@ -99,7 +98,6 @@ async function rollupBuild(target) {
       // }
       console.log(chalk.bold(chalk.green(`API Extractor completed successfully.`)))
     }
-    console.log('pkgDir', pkgDir)
     await fs.remove(`${pkgDir}/dist/packages`)
   }
 }

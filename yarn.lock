@@ -51,7 +51,7 @@
     "@microsoft/tsdoc-config" "~0.16.1"
     "@rushstack/node-core-library" "3.59.7"
 
-"@microsoft/api-extractor@^7.13.2":
+"@microsoft/api-extractor@^7.36.4":
   version "7.36.4"
   resolved "https://registry.npmjs.org/@microsoft/api-extractor/-/api-extractor-7.36.4.tgz#3bb9fbbbeacaa48eea49150351905a2677a506d9"
   integrity sha512-21UECq8C/8CpHT23yiqTBQ10egKUacIpxkPyYR7hdswo/M5yTWdBvbq+77YC9uPKQJOUfOD1FImBQ1DzpsdeQQ==

@@ -2,7 +2,7 @@
   "name": "@hpf2e/sentinel-utils",
   "version": "2.1.54",
   "description": "@hpf2e/sentinel-utils",
-  "author": "cjinhuo",
+  "author": "sultan",
   "license": "MIT",
   "main": "dist/utils.js",
   "module": "dist/utils.esm.js",

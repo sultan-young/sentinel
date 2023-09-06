@@ -7,7 +7,7 @@
   },
 
   "docModel": {
-    "enabled": false
+    "enabled": true
   },
 
   "dtsRollup": {
@@ -47,6 +47,14 @@
 
       "tsdoc-undefined-tag": {
         "logLevel": "none"
+      }
+    }
+  },
+  "compiler": {
+    "overrideTsconfig": {
+      "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs"
       }
     }
   }

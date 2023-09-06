@@ -2,7 +2,7 @@
   "name": "@hpf2e/sentinel-react",
   "version": "2.1.54",
   "description": "A SDK For Report React ErrorBoundary",
-  "author": "cjinhuo",
+  "author": "sultan",
   "license": "MIT",
   "main": "dist/react.js",
   "module": "dist/react.esm.js",

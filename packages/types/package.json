@@ -2,7 +2,7 @@
   "name": "@hpf2e/sentinel-types",
   "version": "2.1.54",
   "description": "sentinel-types",
-  "author": "cjinhuo",
+  "author": "sultan",
   "license": "MIT",
   "main": "dist/types.js",
   "module": "dist/types.esm.js",
