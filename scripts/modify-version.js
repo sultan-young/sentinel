@@ -1,3 +1,4 @@
+// 修改所有package的版本号
 const fs = require('fs')
 const path = require('path')
 

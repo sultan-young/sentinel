@@ -1,3 +1,4 @@
+// 将package发到npm上
 const chalk = require('chalk')
 
 const { getArgv, targets: allTargets, binRun, getPkgRoot, step } = require('./utils')
@@ -10,6 +11,7 @@ let beReleasedPackages = []
 run()
 async function run() {
   const argv = getArgv()
+  console.log('argv: ', argv);
   beReleasedPackages = argv._
   release()
 }
