@@ -109,7 +109,7 @@ export enum EVENTTYPES {
   ERROR = 'error',
   HASHCHANGE = 'hashchange',
   UNHANDLEDREJECTION = 'unhandledrejection',
-  MITO = 'mito',
+  SENTINEL = 'sentinel',
   VUE = 'Vue',
   // for miniprogram
   MINI_ROUTE = 'miniRoute',

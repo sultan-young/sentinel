@@ -2,7 +2,7 @@ import { options as sdkOptions, ReplaceHandler, setTraceId, subscribeEvent, tran
 import { WxAppEvents, WxPageEvents, WxRouteEvents, WxEvents, EVENTTYPES, HTTPTYPE, voidFun } from '@hpf2e/sentinel-shared'
 import { getTimestamp, replaceOld, throttle, getFlag, isEmptyObject, variableTypeDetection, getCurrentRoute } from '@hpf2e/sentinel-utils'
 import { HandleWxAppEvents, HandleWxPageEvents } from './handleWxEvents'
-import { MITOHttp, EMethods } from '@hpf2e/sentinel-types'
+import { SENTINELHttp, EMethods } from '@hpf2e/sentinel-types'
 import { getNavigateBackTargetUrl } from './utils'
 import { ELinstenerTypes } from './constant'
 import { MiniRoute } from './types'
@@ -172,7 +172,7 @@ function replaceAction(
     | WechatMiniprogram.Component.MethodOption
 ) {
   function gestureTrigger(e) {
-    e.mitoWorked = true // 给事件对象增加特殊的标记，避免被无限透传
+    e.sentinelWorked = true // 给事件对象增加特殊的标记，避免被无限透传
     triggerHandlers(EVENTTYPES.DOM, e)
   }
   const throttleGesturetrigger = throttle(gestureTrigger, sdkOptions.throttleDelayTime)
@@ -188,7 +188,7 @@ function replaceAction(
         function (originMethod: (args: any) => void) {
           return function (...args: any): void {
             const e = args[0]
-            if (e && e.type && e.currentTarget && !e.mitoWorked) {
+            if (e && e.type && e.currentTarget && !e.sentinelWorked) {
               if (linstenerTypes.indexOf(e.type) > -1) {
                 throttleGesturetrigger(e)
               }
@@ -259,7 +259,7 @@ export function replaceNetwork() {
             name: (options as WechatMiniprogram.UploadFileOption).name
           }
         }
-        const data: MITOHttp = {
+        const data: SENTINELHttp = {
           type: HTTPTYPE.XHR,
           method,
           url,

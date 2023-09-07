@@ -11,12 +11,12 @@ yarn add @hpf2e/sentinel-web-performance
 ```
 使用cdn
 ```bash
-<script src="https://cdn.jsdelivr.net/npm/@mitojs/web/dist/web-performance.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@sentineljs/web/dist/web-performance.min.js"></script>
 ```
 
 ## 快速开始
 ```javascript
- let wv = new MITO.WebVitals({
+ let wv = new SENTINEL.WebVitals({
     appId: 'allen-test',
     version: '1.0.0',
     reportCallback: console.log,

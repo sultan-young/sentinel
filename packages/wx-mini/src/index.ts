@@ -15,6 +15,6 @@ export function init(options: WxInitOptions = {}) {
     options: wxOptions
   })
   setupReplace()
-  Object.assign(wx, { mitoLog: log, SDK_NAME, SDK_VERSION })
+  Object.assign(wx, { sentinelLog: log, SDK_NAME, SDK_VERSION })
 }
 export { log, sendTrackData, track }

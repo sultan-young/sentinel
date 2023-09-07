@@ -50,7 +50,7 @@ export interface ReportDataType extends ICommonDataType {
   // vue
   componentName?: string
   propsData?: any
-  // logError 手动报错 MITO.log
+  // logError 手动报错 SENTINEL.log
   customTag?: string
 }
 

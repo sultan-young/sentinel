@@ -1,10 +1,10 @@
 import { BREADCRUMBTYPES, ERRORTYPES, globalVar } from '@hpf2e/sentinel-shared'
 import { getLocationHref, getTimestamp, Severity, fromHttpStatus, SpanStatus, interceptStr } from '@hpf2e/sentinel-utils'
-import { ReportDataType, MITOHttp, Replace, ResourceErrorTarget } from '@hpf2e/sentinel-types'
+import { ReportDataType, SENTINELHttp, Replace, ResourceErrorTarget } from '@hpf2e/sentinel-types'
 import { getRealPath } from './errorId'
 import { breadcrumb } from './breadcrumb'
 
-export function httpTransform(data: MITOHttp): ReportDataType {
+export function httpTransform(data: SENTINELHttp): ReportDataType {
   let message = ''
   const { elapsedTime, time, method, traceId, type, status } = data
   const name = `${type}--${method}`

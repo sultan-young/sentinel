@@ -1,6 +1,6 @@
 {
   "name": "@hpf2e/sentinel-wx-mini-performance",
-  "version": "2.1.56",
+  "version": "2.1.6",
   "description": "A SDK For Report Wx Mini Performance",
   "main": "dist/wx-mini-performance.js",
   "module": "dist/wx-mini-performance.js",

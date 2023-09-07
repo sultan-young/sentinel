@@ -14,7 +14,7 @@ yarn add @hpf2e/sentinel-wx-mini-performance
 
 ## 二、快速开始
 ```javascript
-const wxPerformance = new MITO.WxPerformance({
+const wxPerformance = new SENTINEL.WxPerformance({
   appId: "a1329cc0-563b-11eb-98fe-259847d73cdd",
   immediately: true,
   report: (data) => {

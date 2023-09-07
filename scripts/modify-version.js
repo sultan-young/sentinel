@@ -3,7 +3,7 @@ const fs = require('fs')
 const path = require('path')
 
 const { getArgv, targets: allTargets, binRun, getPkgRoot, step, errLog } = require('./utils')
-const MITO_PREFIX = '@hpf2e/sentinel'
+const SENTINEL_PREFIX = '@hpf2e/sentinel'
 let beModifiedPackages = []
 
 run()
@@ -27,21 +27,21 @@ function run() {
 async function modify(targetVersion) {
   step(`\nstart modify packages version: ${targetVersion}`)
   for (const target of beModifiedPackages) {
-    await modifyMitoVersion(target, targetVersion)
+    await modifySentinelVersion(target, targetVersion)
   }
 }
 
-async function modifyMitoVersion(pkgName, version) {
+async function modifySentinelVersion(pkgName, version) {
   const pkgRoot = getPkgRoot(pkgName)
   const pkgPath = path.resolve(pkgRoot, 'package.json')
   const pkg = require(pkgPath)
   const oldVersion = pkg.version
-  if (pkg.name.startsWith(MITO_PREFIX)) {
+  if (pkg.name.startsWith(SENTINEL_PREFIX)) {
     pkg.version = version
   }
   const dependencies = pkg.dependencies || {}
   Object.entries(dependencies).forEach(([dependent, dependentVersion]) => {
-    if (dependent.startsWith(MITO_PREFIX)) {
+    if (dependent.startsWith(SENTINEL_PREFIX)) {
       dependencies[dependent] = version
     }
   })

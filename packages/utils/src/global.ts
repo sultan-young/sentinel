@@ -4,8 +4,8 @@ import { Logger } from './logger'
 import { variableTypeDetection } from './is'
 import { DeviceInfo } from '@hpf2e/sentinel-types'
 
-// MITO的全局变量
-export interface MitoSupport {
+// SENTINEL的全局变量
+export interface SentinelSupport {
   logger: Logger
   breadcrumb: Breadcrumb
   transportData: TransportData
@@ -16,9 +16,9 @@ export interface MitoSupport {
   track?: any
 }
 
-interface MITOGlobal {
+interface SENTINELGlobal {
   console?: Console
-  __MITO__?: MitoSupport
+  __SENTINEL__?: SentinelSupport
 }
 
 export const isNodeEnv = variableTypeDetection.isProcess(typeof process !== 'undefined' ? process : 0)
@@ -34,13 +34,13 @@ export const isBrowserEnv = variableTypeDetection.isWindow(typeof window !== 'un
  * ../returns Global scope object
  */
 export function getGlobal<T>() {
-  if (isBrowserEnv) return window as unknown as MITOGlobal & T
-  if (isWxMiniEnv) return wx as unknown as MITOGlobal & T
-  if (isNodeEnv) return process as unknown as MITOGlobal & T
+  if (isBrowserEnv) return window as unknown as SENTINELGlobal & T
+  if (isWxMiniEnv) return wx as unknown as SENTINELGlobal & T
+  if (isNodeEnv) return process as unknown as SENTINELGlobal & T
 }
 
 const _global = getGlobal<Window>()
-const _support = getGlobalMitoSupport()
+const _support = getGlobalSentinelSupport()
 
 export { _global, _support }
 
@@ -56,13 +56,13 @@ export function getFlag(replaceType: EVENTTYPES | WxEvents): boolean {
 }
 
 /**
- * 获取全部变量__MITO__的引用地址
+ * 获取全部变量__SENTINEL__的引用地址
  *
- * ../returns global variable of MITO
+ * ../returns global variable of SENTINEL
  */
-export function getGlobalMitoSupport(): MitoSupport {
-  _global.__MITO__ = _global.__MITO__ || ({} as MitoSupport)
-  return _global.__MITO__
+export function getGlobalSentinelSupport(): SentinelSupport {
+  _global.__SENTINEL__ = _global.__SENTINEL__ || ({} as SentinelSupport)
+  return _global.__SENTINEL__
 }
 
 export function supportsHistory(): boolean {

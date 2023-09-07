@@ -1,6 +1,6 @@
 {
   "name": "f2e-police-server",
-  "version": "2.1.56",
+  "version": "2.1.6",
   "description": "",
   "main": "index.js",
   "scripts": {

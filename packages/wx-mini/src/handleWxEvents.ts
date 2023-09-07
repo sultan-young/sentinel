@@ -1,6 +1,6 @@
 import { BREADCRUMBTYPES, ERRORTYPES } from '@hpf2e/sentinel-shared'
 import { breadcrumb, handleConsole, httpTransform, transportData, options as sdkOptions } from '@hpf2e/sentinel-core'
-import { ReportDataType, Replace, MITOHttp } from '@hpf2e/sentinel-types'
+import { ReportDataType, Replace, SENTINELHttp } from '@hpf2e/sentinel-types'
 import {
   extractErrorStack,
   getCurrentRoute,
@@ -220,7 +220,7 @@ const HandleWxConsoleEvents = {
 }
 
 const HandleNetworkEvents = {
-  handleRequest(data: MITOHttp): void {
+  handleRequest(data: SENTINELHttp): void {
     const result = httpTransform(data)
     result.url = getCurrentRoute()
     if (data.status === undefined) {

@@ -10,7 +10,7 @@ export interface ResourceErrorTarget {
   localName?: string
 }
 
-export interface MITOHttp {
+export interface SENTINELHttp {
   type: HTTPTYPE
   traceId?: string
   method?: string
@@ -27,9 +27,9 @@ export interface MITOHttp {
   errMsg?: string
 }
 
-export interface MITOXMLHttpRequest extends XMLHttpRequest {
+export interface SENTINELXMLHttpRequest extends XMLHttpRequest {
   [key: string]: any
-  mito_xhr?: MITOHttp
+  sentinel_xhr?: SENTINELHttp
 }
 
 export interface ErrorStack {

@@ -1,13 +1,13 @@
 import { BREADCRUMBTYPES, ERRORTYPES, ERROR_TYPE_RE, HTTP_CODE } from '@hpf2e/sentinel-shared'
 import { transportData, breadcrumb, resourceTransform, httpTransform, options } from '@hpf2e/sentinel-core';
 import { getLocationHref, getTimestamp, isError, parseUrlToObj, extractErrorStack, unknownToString, Severity } from '@hpf2e/sentinel-utils'
-import { ReportDataType, Replace, MITOHttp, ResourceErrorTarget } from '@hpf2e/sentinel-types'
+import { ReportDataType, Replace, SENTINELHttp, ResourceErrorTarget } from '@hpf2e/sentinel-types'
 
 const HandleEvents = {
   /**
    * 处理xhr、fetch回调
    */
-  handleHttp(data: MITOHttp, type: BREADCRUMBTYPES): void {
+  handleHttp(data: SENTINELHttp, type: BREADCRUMBTYPES): void {
     const isError = data.status === 0 || data.status === HTTP_CODE.BAD_REQUEST || data.status > HTTP_CODE.UNAUTHORIZED
     const result = httpTransform(data)
     breadcrumb.push({
