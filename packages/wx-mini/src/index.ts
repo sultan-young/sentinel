@@ -4,9 +4,16 @@ import { setupReplace } from './load'
 import { initOptions, log } from '@hpf2e/sentinel-core'
 import { sendTrackData, track } from './initiative'
 import { SDK_NAME, SDK_VERSION } from '@hpf2e/sentinel-shared'
-export function init(options: InitOptions = {}) {
+import { wxTransportData } from './transportData'
+import { wxOptions } from './options'
+import { WxInitOptions } from './types'
+
+export function init(options: WxInitOptions = {}) {
   if (!isWxMiniEnv) return
-  initOptions(options)
+  initOptions(options, {
+    transportData: wxTransportData,
+    options: wxOptions
+  })
   setupReplace()
   Object.assign(wx, { mitoLog: log, SDK_NAME, SDK_VERSION })
 }

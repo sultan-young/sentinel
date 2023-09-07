@@ -1,7 +1,7 @@
 import { InitOptions } from '@hpf2e/sentinel-types'
-import { generateUUID, toStringValidateOption, validateOption, _support, setSilentFlag, logger } from '@hpf2e/sentinel-utils'
-import { breadcrumb } from './breadcrumb'
-import { transportData } from './transportData'
+import { generateUUID, toStringValidateOption, validateOption, _support, setSilentFlag, logger, Logger } from '@hpf2e/sentinel-utils'
+import { Breadcrumb, breadcrumb } from './breadcrumb'
+import { TransportData, transportData } from './transportData'
 export class Options {
   beforeAppAjaxSend: Function = () => {}
   enableTraceId: Boolean
@@ -31,19 +31,6 @@ export class Options {
   }
   bindOptions(options: InitOptions = {}): void {
     options.beforeAppAjaxSend && (this.beforeAppAjaxSend = options.beforeAppAjaxSend)
-    // wx-mini hooks
-    options.appOnLaunch && (this.appOnLaunch = options.appOnLaunch)
-    options.appOnShow && (this.appOnShow = options.appOnShow)
-    options.appOnHide && (this.appOnHide = options.appOnHide)
-    options.pageOnUnload && (this.pageOnUnload = options.pageOnUnload)
-    options.pageOnShow && (this.pageOnShow = options.pageOnShow)
-    options.pageOnHide && (this.pageOnHide = options.pageOnHide)
-    options.onPageNotFound && (this.onPageNotFound = options.onPageNotFound)
-    options.onShareAppMessage && (this.onShareAppMessage = options.onShareAppMessage)
-    options.onShareTimeline && (this.onShareTimeline = options.onShareTimeline)
-    options.onTabItemTap && (this.onTabItemTap = options.onTabItemTap)
-    options.wxNavigateToMiniProgram && (this.wxNavigateToMiniProgram = options.wxNavigateToMiniProgram)
-    options.triggerWxEvent && (this.triggerWxEvent = options.triggerWxEvent)
     // browser hooks
     options.onRouteChange && (this.onRouteChange = options.onRouteChange)
 
@@ -66,16 +53,27 @@ export function setTraceId(httpUrl: string, callback: (headerFieldName: string, 
   }
 }
 
+export interface OptionsAdapters {
+  breadcrumb?: Breadcrumb,
+  logger?: Logger,
+  transportData?: TransportData,
+  options?: Options,
+}
+
 /**
  * init core methods
  * @param paramOptions
  */
-export function initOptions(paramOptions: InitOptions = {}) {
+export function initOptions(paramOptions: InitOptions = {}, adapters?: OptionsAdapters) {
   setSilentFlag(paramOptions)
   breadcrumb.bindOptions(paramOptions)
   logger.bindOptions(paramOptions.debug)
-  transportData.bindOptions(paramOptions)
-  options.bindOptions(paramOptions)
+
+  let _transportData = adapters?.transportData || transportData;
+  _transportData.bindOptions(paramOptions)
+
+  let _options = adapters?.options || options;
+  _options.bindOptions(paramOptions)
 }
 
 export { options }

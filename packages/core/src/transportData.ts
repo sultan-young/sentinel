@@ -145,7 +145,6 @@ export class TransportData {
     options.configReportXhr && (this.configReportXhr = options.configReportXhr)
     options.backTrackerId && (this.backTrackerId = options.backTrackerId)
     options.configReportUrl && (this.configReportUrl = options.configReportUrl)
-    options.configReportWxRequest && (this.configReportWxRequest = options.configReportWxRequest)
   }
   /**
    * 监控错误上报的请求函数
@@ -182,5 +181,7 @@ export class TransportData {
     }
   }
 }
-const transportData = _support.transportData || (_support.transportData = new TransportData())
+
+// transportData 给全局用，后续可能被其他后载入的transportData替代掉
+const transportData = _support.transportData = new TransportData()
 export { transportData }
