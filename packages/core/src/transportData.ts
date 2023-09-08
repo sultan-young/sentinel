@@ -70,9 +70,9 @@ export class TransportData {
     }
     this.queue.addFn(requestFun)
   }
-  async wxPost(data: any, url: string) {
+   async wxPost(data: any, url: string) {
     const requestFun = (): void => {
-      let requestOptions = { method: 'POST' } as WechatMiniprogram.RequestOption
+      let requestOptions = { method: 'POST' } as any;
       if (typeof this.configReportWxRequest === 'function') {
         const params = this.configReportWxRequest(data)
         // default method
