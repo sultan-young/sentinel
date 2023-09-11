@@ -91,6 +91,7 @@ function xhrReplace(): void {
         this.setRequestHeader(headerFieldName, traceId)
       })
       options.beforeAppAjaxSend && options.beforeAppAjaxSend({ method, url }, this)
+      // 监听到请求完成
       on(this, 'loadend', function (this: SENTINELXMLHttpRequest) {
         if ((method === EMethods.Post && transportData.isSdkTransportUrl(url)) || isFilterHttpUrl(url)) return
         const { responseType, response, status } = this

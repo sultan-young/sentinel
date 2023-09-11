@@ -38,5 +38,5 @@ const server = http.createServer(app)
 server.listen(port, () => {})
 if (process.env.NODE_ENV === 'demo') {
   console.log('examples is available at: http://localhost:' + port)
-  opn(url)
+  // opn(url)
 }

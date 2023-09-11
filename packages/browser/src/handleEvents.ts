@@ -1,14 +1,44 @@
 import { BREADCRUMBTYPES, ERRORTYPES, ERROR_TYPE_RE, HTTP_CODE } from '@hpf2e/sentinel-shared'
 import { transportData, breadcrumb, resourceTransform, httpTransform, options } from '@hpf2e/sentinel-core';
-import { getLocationHref, getTimestamp, isError, parseUrlToObj, extractErrorStack, unknownToString, Severity } from '@hpf2e/sentinel-utils'
+import { getLocationHref, getTimestamp, isError, parseUrlToObj, extractErrorStack, unknownToString, Severity, isHttpFail } from '@hpf2e/sentinel-utils'
 import { ReportDataType, Replace, SENTINELHttp, ResourceErrorTarget } from '@hpf2e/sentinel-types'
+// import SlsTracker from '@aliyun-sls/web-track-browser';
+// const tracker = new SlsTracker({
+//   host: 'ap-northeast-1.log.aliyuncs.com',
+//   project: 'frontend-tracking-hk',
+//   logstore: 'tracking-log'
+// })
+
+// // 公参
+// const pdCommonParams: any = {
+//   pd_user_id: userId,
+//   pd_is_h5: 1,
+//   pd_log_type: 'INFO',
+//   pd_log_time: dayjs().format('YYYY/MM/DD HH:mm:ss'),
+//   pd_keyword: 'NetworkTimingData',
+//   pd_app_id: appTypeId,
+//   pd_app_version: appVersion,
+//   pd_agent_type: agentType,
+//   pd_current_language: language,
+//   pd_system_language: navigator.language,
+//   pd_device_id: uniqueToken,
+//   pd_device_name: isiOS?'Apple':'Android',
+//   pd_device_version: '',
+//   pd_device_type: '',
+//   pd_country: countryCode,
+//   pd_longitude: longitude,
+//   pd_latitude: latitude,
+
+// }
 
 const HandleEvents = {
   /**
    * 处理xhr、fetch回调
    */
   handleHttp(data: SENTINELHttp, type: BREADCRUMBTYPES): void {
-    const isError = data.status === 0 || data.status === HTTP_CODE.BAD_REQUEST || data.status > HTTP_CODE.UNAUTHORIZED
+    console.log('data: ', data, type);
+    // TODO: 这里需要完善一下
+    const isError = isHttpFail(data.status)
     const result = httpTransform(data)
     breadcrumb.push({
       type,
@@ -17,6 +47,9 @@ const HandleEvents = {
       level: Severity.Info,
       time: data.time
     })
+    // tracker.send({
+    //   pd_user_id: ''
+    // })
     if (isError) {
       breadcrumb.push({
         type,

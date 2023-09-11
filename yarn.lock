@@ -2,6 +2,34 @@
 # yarn lockfile v1
 
 
+"@aliyun-sls/web-base@0.2.9":
+  version "0.2.9"
+  resolved "https://registry.npmjs.org/@aliyun-sls/web-base/-/web-base-0.2.9.tgz#4dc503f66a0c90863917fe548a8b18e349b1eb2c"
+  integrity sha512-ywCyyx7hqtAhOmuOjXu/gVQw6rPiig8HxshnUmT2VYkD9WAE7y4LeG8Yh6Lzh+5KA8ep+IzPa46WhOGiOFwDjw==
+  dependencies:
+    "@aliyun-sls/web-types" "0.2.9"
+
+"@aliyun-sls/web-track-base@0.2.9":
+  version "0.2.9"
+  resolved "https://registry.npmjs.org/@aliyun-sls/web-track-base/-/web-track-base-0.2.9.tgz#8e852af93f8d8c6d7fe37ef2e5c9b92595a82ae4"
+  integrity sha512-iEMpU60HoLiAA0Ihgl+t6WWjMTJ9Z7NsRGDhijaJmv/9N5Iwmpcc/A85XmqBG3QzfkF1HjTbzQwmE8x7QsFMlQ==
+  dependencies:
+    "@aliyun-sls/web-types" "0.2.9"
+
+"@aliyun-sls/web-track-browser@^0.2.9":
+  version "0.2.9"
+  resolved "https://registry.npmjs.org/@aliyun-sls/web-track-browser/-/web-track-browser-0.2.9.tgz#a53f5f1a8146488fe3f670d841cec0d455b0549b"
+  integrity sha512-XyyFXCaGvcyHFwHCM07X+KN8tfK3tOvdVqgA29bf0l0yysnhX5rgtwZF7v/tHMKLk+LVk2r0wGkSOMcF+ZVFIQ==
+  dependencies:
+    "@aliyun-sls/web-base" "0.2.9"
+    "@aliyun-sls/web-track-base" "0.2.9"
+    "@aliyun-sls/web-types" "0.2.9"
+
+"@aliyun-sls/web-types@0.2.9":
+  version "0.2.9"
+  resolved "https://registry.npmjs.org/@aliyun-sls/web-types/-/web-types-0.2.9.tgz#c6a108230c1e7ac06657517877d2c0a5f748be95"
+  integrity sha512-QtOG+AHc+e8gdhjObHceGrrWs+k94zQpKZtHYSimG78c6yyZCJMa8nwVpwB2C+Dem4Ca/Y1Rpat8VSvh2uWx5Q==
+
 "@jridgewell/gen-mapping@^0.3.0":
   version "0.3.3"
   resolved "https://registry.npmjs.org/@jridgewell/gen-mapping/-/gen-mapping-0.3.3.tgz#7e02e6eb5df901aaedb08514203b096614024098"

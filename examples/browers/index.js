@@ -1,3 +1,4 @@
+console.log(111, hpSentinel)
 window.hpSentinel.init({
     // debug: true,
     silentConsole: true,
@@ -8,5 +9,4 @@ window.hpSentinel.init({
       console.log('onRouteChange: _', from, to);
     }
   })
-console.log(111, hpSentinel)
   
