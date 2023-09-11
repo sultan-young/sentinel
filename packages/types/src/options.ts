@@ -31,17 +31,13 @@ export interface InitOptions extends SilentEventTypes, HooksTypes, WxSilentEvent
    */
   disabled?: boolean
   /**
-   * 每个项目有一个唯一key，给监控的dsn用的
+   * 项目唯一名称
    */
-  apikey?: string
+  projectName?: string
   /**
    * 使用img上报的方式，默认为false，默认是xhr的上报方式
    */
   useImgUpload?: boolean
-  /**
-   * 每个项目有一个唯一trackKey，给埋点的dsn用的
-   */
-  trackKey?: string
   /**
    * 默认为关闭，为true是会打印一些信息：breadcrumb
    */
@@ -75,16 +71,13 @@ export interface InitOptions extends SilentEventTypes, HooksTypes, WxSilentEvent
    * 按钮点击和微信触摸事件节流时间，默认是0
    */
   throttleDelayTime?: number
-  /**
-   * 在引入wx-mini的情况下，使用该参数用来开启
-   */
-  enableTrack?: boolean
+  
   /**
    * 在开启enableBury后，将所有埋点信息上报到该服务端地址，如果该属性有值时才会启动无痕埋点
    */
   trackDsn?: string
   /**
-   * 最多可重复上报同一个错误的次数
+   * 最多可重复上报同一个错误的次数, 默认为2
    */
   maxDuplicateCount?: number
 }
@@ -133,12 +126,6 @@ export interface HooksTypes {
    * ../param config 当前请求的
    */
   beforeAppAjaxSend?(config: IRequestHeaderConfig, setRequestHeader: IBeforeAppAjaxSendConfig): void
-
-  /**
-   * 钩子函数，在beforeDataReport后面调用，在整合上报数据和本身SDK信息数据前调用，当前函数执行完后立即将数据错误信息上报至服务端
-   * trackerId表示用户唯一键（可以理解成userId），需要trackerId的意义可以区分每个错误影响的用户数量
-   */
-  backTrackerId?(): string | number
 }
 
 export interface SilentEventTypes {

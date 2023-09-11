@@ -2,16 +2,14 @@ import { ERRORTYPES } from '@hpf2e/sentinel-shared'
 import { BreadcrumbPushData } from './breadcrumb'
 import { DeviceInfo, EActionType } from './track'
 
-export interface AuthInfo {
-  apikey?: string
-  trackKey?: string
+export interface SdkInfo {
+  projectName: string
   sdkVersion: string
   sdkName: string
-  trackerId: string
 }
 
 export interface TransportDataType {
-  authInfo: AuthInfo
+  sdkInfo: SdkInfo
   breadcrumb?: BreadcrumbPushData[]
   data?: FinalReportType
   record?: any[]

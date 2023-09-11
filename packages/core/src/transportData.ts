@@ -2,7 +2,7 @@ import { _support, validateOption, logger, isBrowserEnv, isWxMiniEnv, variableTy
 import { createErrorId } from './errorId'
 import { SDK_NAME, SDK_VERSION } from '@hpf2e/sentinel-shared'
 import { breadcrumb } from './breadcrumb'
-import { AuthInfo, TransportDataType, EMethods, InitOptions, isReportDataType, DeviceInfo, FinalReportType } from '@hpf2e/sentinel-types'
+import { SdkInfo, TransportDataType, EMethods, InitOptions, isReportDataType, DeviceInfo, FinalReportType } from '@hpf2e/sentinel-types'
 /**
  * 用来传输数据类，包含img标签、xhr请求
  * 功能：支持img请求和xhr请求、可以断点续存（保存在localstorage），
@@ -13,15 +13,13 @@ import { AuthInfo, TransportDataType, EMethods, InitOptions, isReportDataType, D
 export class TransportData {
   queue: Queue
   beforeDataReport: unknown = null
-  backTrackerId: unknown = null
   configReportXhr: unknown = null
   configReportUrl: unknown = null
   configReportWxRequest: unknown = null
   useImgUpload = false
-  apikey = ''
-  trackKey = ''
   errorDsn = ''
   trackDsn = ''
+  projectName = 'unknown'
   constructor() {
     this.queue = new Queue()
   }
@@ -46,7 +44,7 @@ export class TransportData {
   }
   async beforePost(data: FinalReportType) {
     if (isReportDataType(data)) {
-      const errorId = createErrorId(data, this.apikey)
+      const errorId = createErrorId(data)
       if (!errorId) return false
       data.errorId = errorId
     }
@@ -87,37 +85,17 @@ export class TransportData {
     }
     this.queue.addFn(requestFun)
   }
-  getAuthInfo(): AuthInfo {
-    const trackerId = this.getTrackerId()
-    const result: AuthInfo = {
-      trackerId: String(trackerId),
+  getSdkInfo(): SdkInfo {
+    const result: SdkInfo = {
+      projectName: this.projectName,
       sdkVersion: SDK_VERSION,
       sdkName: SDK_NAME
     }
-    this.apikey && (result.apikey = this.apikey)
-    this.trackKey && (result.trackKey = this.trackKey)
     return result
-  }
-  getApikey() {
-    return this.apikey
-  }
-  getTrackKey() {
-    return this.trackKey
-  }
-  getTrackerId(): string | number {
-    if (typeof this.backTrackerId === 'function') {
-      const trackerId = this.backTrackerId()
-      if (typeof trackerId === 'string' || typeof trackerId === 'number') {
-        return trackerId
-      } else {
-        logger.error(`trackerId:${trackerId} 期望 string 或 number 类型，但是传入 ${typeof trackerId}`)
-      }
-    }
-    return ''
   }
   getTransportData(data: FinalReportType): TransportDataType {
     return {
-      authInfo: this.getAuthInfo(),
+      sdkInfo: this.getSdkInfo(),
       breadcrumb: breadcrumb.getStack(),
       data,
       record: this.getRecord(),
@@ -136,14 +114,12 @@ export class TransportData {
   }
 
   bindOptions(options: InitOptions = {}): void {
-    options.apikey && (this.apikey = options.apikey)
-    options.trackKey && (this.trackKey = options.trackKey)
+    options.projectName && (this.projectName = options.projectName)
     options.dsn && (this.errorDsn = options.dsn)
     options.trackDsn && (this.trackDsn = options.trackDsn)
     options.useImgUpload && (this.useImgUpload = options.useImgUpload)
     options.beforeDataReport && (this.beforeDataReport = options.beforeDataReport)
     options.configReportXhr && (this.configReportXhr = options.configReportXhr)
-    options.backTrackerId && (this.backTrackerId = options.backTrackerId)
     options.configReportUrl && (this.configReportUrl = options.configReportUrl)
   }
   /**
