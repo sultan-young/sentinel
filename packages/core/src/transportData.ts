@@ -18,7 +18,6 @@ export class TransportData {
   configReportWxRequest: unknown = null
   useImgUpload = false
   errorDsn = ''
-  trackDsn = ''
   projectName = 'unknown'
   constructor() {
     this.queue = new Queue()
@@ -107,16 +106,12 @@ export class TransportData {
     if (this.errorDsn && targetUrl.indexOf(this.errorDsn) !== -1) {
       isSdkDsn = true
     }
-    if (this.trackDsn && targetUrl.indexOf(this.trackDsn) !== -1) {
-      isSdkDsn = true
-    }
     return isSdkDsn
   }
 
   bindOptions(options: InitOptions = {}): void {
     options.projectName && (this.projectName = options.projectName)
     options.dsn && (this.errorDsn = options.dsn)
-    options.trackDsn && (this.trackDsn = options.trackDsn)
     options.useImgUpload && (this.useImgUpload = options.useImgUpload)
     options.beforeDataReport && (this.beforeDataReport = options.beforeDataReport)
     options.configReportXhr && (this.configReportXhr = options.configReportXhr)
@@ -135,13 +130,8 @@ export class TransportData {
         logger.error('dsn为空，没有传入监控错误上报的dsn地址，请在init中传入')
         return
       }
-    } else {
-      dsn = this.trackDsn
-      if (isEmpty(dsn)) {
-        logger.error('trackDsn为空，没有传入埋点上报的dsn地址，请在init中传入')
-        return
-      }
     }
+    
     const result = await this.beforePost(data)
     if (!result) return
     if (typeof this.configReportUrl === 'function') {

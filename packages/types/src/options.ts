@@ -73,10 +73,6 @@ export interface InitOptions extends SilentEventTypes, HooksTypes, WxSilentEvent
   throttleDelayTime?: number
   
   /**
-   * 在开启enableBury后，将所有埋点信息上报到该服务端地址，如果该属性有值时才会启动无痕埋点
-   */
-  trackDsn?: string
-  /**
    * 最多可重复上报同一个错误的次数, 默认为2
    */
   maxDuplicateCount?: number
