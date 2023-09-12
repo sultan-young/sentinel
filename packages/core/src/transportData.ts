@@ -124,6 +124,7 @@ export class TransportData {
    */
   async send(data: FinalReportType) {
     let dsn = ''
+    
     if (isReportDataType(data)) {
       dsn = this.errorDsn
       if (isEmpty(dsn)) {
@@ -131,7 +132,7 @@ export class TransportData {
         return
       }
     }
-    
+
     const result = await this.beforePost(data)
     if (!result) return
     if (typeof this.configReportUrl === 'function') {

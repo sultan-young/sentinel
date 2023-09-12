@@ -4,6 +4,7 @@ import { ReportDataType, SENTINELHttp, Replace, ResourceErrorTarget } from '@hpf
 import { getRealPath } from './errorId'
 import { breadcrumb } from './breadcrumb'
 
+
 export function httpTransform(data: SENTINELHttp): ReportDataType {
   let message = ''
   const { elapsedTime, time, method, traceId, type, status } = data

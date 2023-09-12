@@ -2,34 +2,8 @@ import { BREADCRUMBTYPES, ERRORTYPES, ERROR_TYPE_RE, HTTP_CODE } from '@hpf2e/se
 import { transportData, breadcrumb, resourceTransform, httpTransform, options } from '@hpf2e/sentinel-core';
 import { getLocationHref, getTimestamp, isError, parseUrlToObj, extractErrorStack, unknownToString, Severity, isHttpFail } from '@hpf2e/sentinel-utils'
 import { ReportDataType, Replace, SENTINELHttp, ResourceErrorTarget } from '@hpf2e/sentinel-types'
-// import SlsTracker from '@aliyun-sls/web-track-browser';
-// const tracker = new SlsTracker({
-//   host: 'ap-northeast-1.log.aliyuncs.com',
-//   project: 'frontend-tracking-hk',
-//   logstore: 'tracking-log'
-// })
+import { slsTracker } from './slstracker';
 
-// // 公参
-// const pdCommonParams: any = {
-//   pd_user_id: userId,
-//   pd_is_h5: 1,
-//   pd_log_type: 'INFO',
-//   pd_log_time: dayjs().format('YYYY/MM/DD HH:mm:ss'),
-//   pd_keyword: 'NetworkTimingData',
-//   pd_app_id: appTypeId,
-//   pd_app_version: appVersion,
-//   pd_agent_type: agentType,
-//   pd_current_language: language,
-//   pd_system_language: navigator.language,
-//   pd_device_id: uniqueToken,
-//   pd_device_name: isiOS?'Apple':'Android',
-//   pd_device_version: '',
-//   pd_device_type: '',
-//   pd_country: countryCode,
-//   pd_longitude: longitude,
-//   pd_latitude: latitude,
-
-// }
 
 const HandleEvents = {
   /**
@@ -47,9 +21,9 @@ const HandleEvents = {
       level: Severity.Info,
       time: data.time
     })
-    // tracker.send({
-    //   pd_user_id: ''
-    // })
+    slsTracker.send({
+      pd_user_id: 15502628606,
+    })
     if (isError) {
       breadcrumb.push({
         type,
