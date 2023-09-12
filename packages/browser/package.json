@@ -2,7 +2,7 @@
   "name": "@hpf2e/sentinel-browser",
   "version": "2.1.61",
   "description": "A SDK For sentineling Browser Errors",
-  "author": "cjinhuo",
+  "author": "sultan",
   "license": "MIT",
   "main": "dist/browser.js",
   "module": "dist/browser.esm.js",
@@ -15,7 +15,7 @@
     "@hpf2e/sentinel-core": "2.1.61",
     "@hpf2e/sentinel-shared": "2.1.61",
     "@hpf2e/sentinel-types": "2.1.61",
-    "@aliyun-sls/web-track-browser": "^0.2.9"
+    "@hpf2e/sentinel-slsTracker": "2.1.61"
   },
   "buildOptions": {
     "formats": [

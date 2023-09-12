@@ -2,7 +2,8 @@ import { InitOptions } from '@hpf2e/sentinel-types'
 import { generateUUID, toStringValidateOption, validateOption, _support, setSilentFlag, logger, Logger } from '@hpf2e/sentinel-utils'
 import { Breadcrumb, breadcrumb } from './breadcrumb'
 import { TransportData, transportData } from './transportData'
-import { slsTracker } from 'packages/browser/src/slstracker'
+import { slsTracker } from '@hpf2e/sentinel-slsTracker';
+
 export class Options {
   beforeAppAjaxSend: Function = () => {}
   enableTraceId: Boolean
