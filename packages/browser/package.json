@@ -14,8 +14,7 @@
     "@hpf2e/sentinel-utils": "2.1.61",
     "@hpf2e/sentinel-core": "2.1.61",
     "@hpf2e/sentinel-shared": "2.1.61",
-    "@hpf2e/sentinel-types": "2.1.61",
-    "@hpf2e/sentinel-slsTracker": "2.1.61"
+    "@hpf2e/sentinel-types": "2.1.61"
   },
   "buildOptions": {
     "formats": [

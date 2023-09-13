@@ -2,7 +2,6 @@ import { BREADCRUMBTYPES, ERRORTYPES, ERROR_TYPE_RE, HTTP_CODE } from '@hpf2e/se
 import { transportData, breadcrumb, resourceTransform, httpTransform, options } from '@hpf2e/sentinel-core';
 import { getLocationHref, getTimestamp, isError, parseUrlToObj, extractErrorStack, unknownToString, Severity, isHttpFail } from '@hpf2e/sentinel-utils'
 import { ReportDataType, Replace, SENTINELHttp, ResourceErrorTarget } from '@hpf2e/sentinel-types'
-import { slsTracker } from '@hpf2e/sentinel-slsTracker';
 
 
 const HandleEvents = {
@@ -19,12 +18,6 @@ const HandleEvents = {
       level: Severity.Info,
       time: data.time
     })
-    console.log('data: ', data, type);
-    // TODO: 网络请求时候，发送网络日志
-    slsTracker.send({
-      pd_user_id: 15502628606,
-    })
-    // TODO: 网络请求错误时候，发送错误日志
     if (isError) {
       breadcrumb.push({
         type,

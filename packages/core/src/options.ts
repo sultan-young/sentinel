@@ -2,7 +2,6 @@ import { InitOptions } from '@hpf2e/sentinel-types'
 import { generateUUID, toStringValidateOption, validateOption, _support, setSilentFlag, logger, Logger } from '@hpf2e/sentinel-utils'
 import { Breadcrumb, breadcrumb } from './breadcrumb'
 import { TransportData, transportData } from './transportData'
-import { slsTracker } from '@hpf2e/sentinel-slsTracker';
 
 export class Options {
   beforeAppAjaxSend: Function = () => {}
@@ -70,7 +69,6 @@ export function initOptions(paramOptions: InitOptions = {}, adapters?: OptionsAd
   setSilentFlag(paramOptions)
   breadcrumb.bindOptions(paramOptions)
   logger.bindOptions(paramOptions.debug)
-  slsTracker.bindOptions(paramOptions.aliyunSlsOptions)
 
   let _transportData = adapters?.transportData || transportData;
   _transportData.bindOptions(paramOptions)

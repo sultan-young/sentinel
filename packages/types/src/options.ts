@@ -1,7 +1,6 @@
 import { Breadcrumb } from '@hpf2e/sentinel-core'
 import { BreadcrumbPushData } from './breadcrumb'
 import { TransportDataType } from './transportData'
-import { WebTrackerBrowserOptions } from '@aliyun-sls/web-types';
 type CANCEL = null | undefined | boolean
 
 export type HttpMethod = 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE' | 'OPTIONS'
@@ -27,10 +26,6 @@ export interface InitOptions extends SilentEventTypes, HooksTypes, WxSilentEvent
    * 错误监控的dsn服务器地址
    */
   dsn?: string
-  /**
-   * 
-   */
-  aliyunSlsOptions?: WebTrackerBrowserOptions
   /**
    * 为true时，整个sdk将禁用
    */
