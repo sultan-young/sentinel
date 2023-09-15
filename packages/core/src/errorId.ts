@@ -28,10 +28,11 @@ export function createErrorId(data: ReportDataType): number | null {
       id = data.type + data.message
       break
   }
-  id = hashCode(id)
+  id = Math.abs(hashCode(id));
   if (allErrorNumber[id] >= options.maxDuplicateCount) {
     return null
   }
+  // 对当前错误进行累加
   if (typeof allErrorNumber[id] === 'number') {
     allErrorNumber[id]++
   } else {

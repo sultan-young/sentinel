@@ -3,7 +3,7 @@ window.hpSentinel.init({
     // debug: true,
     silentConsole: true,
     maxBreadcrumbs: 10,
-    dsn: 'http://localhost:2021/errors/upload',
+    dsn: 'http://localhost:7001/api/v1/log/report',
     projectName: 'test',
     throttleDelayTime: 0,
     onRouteChange(from, to) {
