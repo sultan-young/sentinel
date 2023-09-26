@@ -5,7 +5,7 @@
   "scripts": {
     "build": "node ./scripts/build.js",
     "publish": "node ./scripts/publish-npm.js",
-    "version": "node script/version.js",
+    "version": "node ./scripts/modify-version.js",
     "examples": "cross-env NODE_ENV=demo ts-node ./examples/server/index.ts"
   },
   "author": "",
