@@ -60,6 +60,7 @@ function xhrReplace(): void {
   const originalXhrProto = XMLHttpRequest.prototype
   replaceOld(originalXhrProto, 'open', (originalOpen: voidFun): voidFun => {
     return function (this: SENTINELXMLHttpRequest, ...args: any[]): void {
+      // NOTE: 在XHLHttpRequest 上挂载一个自定义属性, 提供给send时候消费
       this.sentinel_xhr = {
         method: variableTypeDetection.isString(args[0]) ? args[0].toUpperCase() : args[0],
         url: args[1],

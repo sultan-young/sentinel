@@ -76,6 +76,10 @@ export interface InitOptions extends SilentEventTypes, HooksTypes, WxSilentEvent
    * 最多可重复上报同一个错误的次数, 默认为2
    */
   maxDuplicateCount?: number
+  /**
+   * 用来判断一个请求是否失败，默认会以http请求的Status code进行判断
+   */
+  isRequestFail?(responseText: string): boolean;
 }
 
 export interface HooksTypes {

@@ -5,6 +5,7 @@ import { TransportData, transportData } from './transportData'
 
 export class Options {
   beforeAppAjaxSend: Function = () => {}
+  isRequestFail: Function = () => true
   enableTraceId: Boolean
   filterXhrUrlRegExp: RegExp
   includeHttpUrlTraceIdRegExp: RegExp
@@ -32,6 +33,7 @@ export class Options {
   }
   bindOptions(options: InitOptions = {}): void {
     options.beforeAppAjaxSend && (this.beforeAppAjaxSend = options.beforeAppAjaxSend)
+    options.isRequestFail && (this.isRequestFail = options.isRequestFail)
     // browser hooks
     options.onRouteChange && (this.onRouteChange = options.onRouteChange)
 

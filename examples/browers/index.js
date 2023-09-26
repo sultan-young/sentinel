@@ -7,6 +7,12 @@ window.hpSentinel.init({
     throttleDelayTime: 0,
     onRouteChange(from, to) {
       console.log('onRouteChange: _', from, to);
+    },
+    isRequestFail(responseText) {
+      const response = JSON.parse(responseText)
+      console.log('response: ', response);
+
+      return response.code !== 1000
     }
   })
   

@@ -9,7 +9,7 @@ const HandleEvents = {
    * 处理xhr、fetch回调
    */
   handleHttp(data: SENTINELHttp, type: BREADCRUMBTYPES): void {
-    const isError = isHttpFail(data.status)
+    const isError = (options.isRequestFail && options.isRequestFail(data.responseText)) || isHttpFail(data.status)
     const result = httpTransform(data)
     breadcrumb.push({
       type,

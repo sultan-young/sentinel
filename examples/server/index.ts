@@ -18,7 +18,12 @@ app.get(ServerUrls.normalGet, (req, res) => {
 })
 
 app.get(ServerUrls.exceptionGet, (req, res) => {
-  res.status(500).send('get 异常响应体!!!')
+  res.status(200).send({
+    "code": 0,
+    "message": "查询的用户不存在",
+    "data": [1, 2, 3,4 ],
+    "currencySymbol": null
+})
 })
 
 app.post(ServerUrls.normalPost, (req, res) => {
