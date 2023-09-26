@@ -1,6 +1,6 @@
 {
   "name": "@hpf2e/sentinel-web-performance",
-  "version": "2.1.61",
+  "version": "2.1.62",
   "description": "A SDK For Report Web Performance",
   "author": "allen(https://github.com/Chryseis)",
   "license": "MIT",

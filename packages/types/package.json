@@ -1,6 +1,6 @@
 {
   "name": "@hpf2e/sentinel-types",
-  "version": "2.1.61",
+  "version": "2.1.62",
   "description": "sentinel-types",
   "author": "sultan",
   "license": "MIT",
@@ -11,10 +11,10 @@
     "dist"
   ],
   "dependencies": {
-    "@hpf2e/sentinel-core": "2.1.61",
-    "@hpf2e/sentinel-utils": "2.1.61",
-    "@hpf2e/sentinel-browser": "2.1.61",
-    "@hpf2e/sentinel-shared": "2.1.61"
+    "@hpf2e/sentinel-core": "2.1.62",
+    "@hpf2e/sentinel-utils": "2.1.62",
+    "@hpf2e/sentinel-browser": "2.1.62",
+    "@hpf2e/sentinel-shared": "2.1.62"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
