@@ -18,6 +18,12 @@
     <button id="logUpload" onclick="mitoLog()">log上报</button>
     <button id="promiseError" onclick="promiseError()">promiseError</button>
     <button id="hashChange" onclick="hashChange()">改变hash</button>
+
+    <div class="controls">
+      <button id="img-error" type="button" onclick="loadResourceError()">生成图像 error</button>
+      <img class="bad-img" />
+    </div>
+    
     <script>
       function codeError() {
         let a = {}
@@ -88,6 +94,27 @@
             console.log(xhr.responseText)
           }
         }
+      }
+
+      // 资源加载错误
+      function loadResourceError() {
+        const log = document.querySelector(".event-log-contents");
+        const badImg = document.querySelector(".bad-img");
+        const imgError = document.querySelector("#img-error");
+
+        // TIPS: 这样不会触发XMLHttpRequest
+        badImg.setAttribute("src", "http://admin-dev.hungrypanda.cn:4200/global_loading.svg");
+
+
+        // TIPS: 这样会触发
+        // fetch('http://admin-dev.hungrypanda.cn:4200/global_loading.svg', {
+        //   method: 'get',
+        //   headers: {
+        //     'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8' // 设置 Accept 头部字段为 image/svg+xml
+        //   }
+        // }).then(res => {
+        //   console.log('res: ', res);
+        // })
       }
     </script>
   </body>

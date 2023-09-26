@@ -24,6 +24,7 @@ export function setupReplace(): void {
   })
   addReplaceHandler({
     callback: (data) => {
+      // TODO: 需要将console.error 进行拦截并上报
       handleConsole(data)
     },
     type: EVENTTYPES.CONSOLE

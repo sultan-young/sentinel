@@ -5,7 +5,7 @@ import { TransportData, transportData } from './transportData'
 
 export class Options {
   beforeAppAjaxSend: Function = () => {}
-  isRequestFail: Function = () => true
+  isRequestFail: unknown = null
   enableTraceId: Boolean
   filterXhrUrlRegExp: RegExp
   includeHttpUrlTraceIdRegExp: RegExp

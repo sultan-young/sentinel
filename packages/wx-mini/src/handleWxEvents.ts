@@ -233,7 +233,10 @@ const HandleNetworkEvents = {
       data: result,
       level: Severity.Info
     })
-    const isError = (sdkOptions.isRequestFail && sdkOptions.isRequestFail(data.responseText)) || isHttpFail(data.status)
+    let isError = isHttpFail(data.status);
+    if (!isError && typeof sdkOptions.isRequestFail === 'function') {
+      isError = sdkOptions.isRequestFail(data.responseText);
+    }
     if (isError) {
       breadcrumb.push({
         type,
