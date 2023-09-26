@@ -1,9 +1,8 @@
-console.log(111, hpSentinel)
 window.hpSentinel.init({
     // debug: true,
     silentConsole: true,
     maxBreadcrumbs: 10,
-    dsn: 'http://localhost:7001/api/v1/log/report',
+    dsn: 'https://f2e-sentinel-test.hungrypanda.cn/api/v1/log/report',
     projectName: 'test',
     throttleDelayTime: 0,
     onRouteChange(from, to) {
