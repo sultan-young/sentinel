@@ -1,6 +1,6 @@
 {
   "name": "@hpf2e/sentinel-utils",
-  "version": "2.1.66",
+  "version": "2.1.67",
   "description": "@hpf2e/sentinel-utils",
   "author": "sultan",
   "license": "MIT",
@@ -11,9 +11,9 @@
     "dist"
   ],
   "dependencies": {
-    "@hpf2e/sentinel-core": "2.1.66",
-    "@hpf2e/sentinel-browser": "2.1.66",
-    "@hpf2e/sentinel-shared": "2.1.66",
-    "@hpf2e/sentinel-types": "2.1.66"
+    "@hpf2e/sentinel-core": "2.1.67",
+    "@hpf2e/sentinel-browser": "2.1.67",
+    "@hpf2e/sentinel-shared": "2.1.67",
+    "@hpf2e/sentinel-types": "2.1.67"
   }
 }
