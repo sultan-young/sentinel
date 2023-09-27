@@ -1,5 +1,5 @@
 import { BREADCRUMBTYPES, ERRORTYPES } from '@hpf2e/sentinel-shared'
-import { breadcrumb, handleConsole, httpTransform, transportData, options as sdkOptions } from '@hpf2e/sentinel-core'
+import { breadcrumb, handleConsoleBreadcrumb, httpTransform, transportData, options as sdkOptions } from '@hpf2e/sentinel-core'
 import { ReportDataType, Replace, SENTINELHttp } from '@hpf2e/sentinel-types'
 import {
   extractErrorStack,
@@ -215,7 +215,7 @@ const HandleWxPageEvents = {
 
 const HandleWxConsoleEvents = {
   console(data: Replace.TriggerConsole) {
-    handleConsole(data)
+    handleConsoleBreadcrumb(data)
   }
 }
 

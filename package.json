@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "build": "node ./scripts/build.js",
+    "watch": "node scripts/build.js --watch=true",
     "publish": "node ./scripts/publish-npm.js",
     "version": "node ./scripts/modify-version.js",
     "examples": "cross-env NODE_ENV=demo ts-node ./examples/server/index.ts"

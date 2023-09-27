@@ -1,4 +1,4 @@
-import { _support, validateOption, logger, isBrowserEnv, isWxMiniEnv, variableTypeDetection, Queue, isEmpty } from '@hpf2e/sentinel-utils'
+import { _support, validateOption, logger, isBrowserEnv, isWxMiniEnv, variableTypeDetection, Queue, isEmpty, throttle } from '@hpf2e/sentinel-utils'
 import { createErrorId } from './errorId'
 import { SDK_NAME, SDK_VERSION } from '@hpf2e/sentinel-shared'
 import { breadcrumb } from './breadcrumb'
@@ -122,7 +122,7 @@ export class TransportData {
    * @param data 错误上报数据格式
    * @returns
    */
-  async send(data: FinalReportType) {
+  send = throttle(async (data: FinalReportType) => {
     let dsn = ''
     
     if (isReportDataType(data)) {
@@ -146,7 +146,7 @@ export class TransportData {
     if (isWxMiniEnv) {
       return this.wxPost(result, dsn)
     }
-  }
+  }, 300)
 }
 
 // transportData 给全局用，后续可能被其他后载入的transportData替代掉

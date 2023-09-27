@@ -10,7 +10,7 @@ const WebPerformancePath = resolveDirname('../WebPerformance')
 const distFilePath = resolve('./packages/web/dist')
 const wxDistFilePath = resolve('./packages/wx-mini/dist')
 const webPerfFilePath = resolve('./packages/web-performance/dist')
-console.log(webPerfFilePath, 'webPerfFilePath')
+
 export const FilePaths = {
   '/browers': JsFilePath,
   '/Vue': VueFilePath,

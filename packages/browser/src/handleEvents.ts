@@ -1,5 +1,5 @@
 import { BREADCRUMBTYPES, ERRORTYPES, ERROR_TYPE_RE, HTTP_CODE } from '@hpf2e/sentinel-shared'
-import { transportData, breadcrumb, resourceTransform, httpTransform, options } from '@hpf2e/sentinel-core';
+import { transportData, breadcrumb, resourceTransform, httpTransform, options, handleConsoleBreadcrumb, log } from '@hpf2e/sentinel-core';
 import { getLocationHref, getTimestamp, isError, parseUrlToObj, extractErrorStack, unknownToString, Severity, isHttpFail } from '@hpf2e/sentinel-utils'
 import { ReportDataType, Replace, SENTINELHttp, ResourceErrorTarget } from '@hpf2e/sentinel-types'
 
@@ -148,6 +148,35 @@ const HandleEvents = {
       level: Severity.Error
     })
     transportData.send(data)
+  },
+  // 处理console上报的错误
+  handleConsole(data: {args: any[], level: string}): void {
+    handleConsoleBreadcrumb(data)
+    const { args, level } = data;
+    if (level === 'error') {  
+      console.log(`%c捕获到错误`, 'color: blue; font-weight: bold;', args)
+      /**
+       * 处理由 error event触发的事件并被console.error包装后抛出的case
+       * window.addEventListener('error', (values) => {
+       *   console.error(values)
+       * })
+       */
+      if (args.length === 1 && args[0] instanceof ErrorEvent) {
+        this.handleError(args[0])
+      } 
+      /**
+      * 此时为自定义上报，例如
+      * throw Error('发生错误')
+      */
+      else {
+        log({
+          message: args,
+          tag: 'console.error',
+          level: Severity.Normal,
+          type: ERRORTYPES.LOG_ERROR,
+        })
+      }
+    }
   }
 }
 

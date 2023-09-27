@@ -54,7 +54,7 @@ export function resourceTransform(target: ResourceErrorTarget): ReportDataType {
   }
 }
 
-export function handleConsole(data: Replace.TriggerConsole): void {
+export function handleConsoleBreadcrumb(data: Replace.TriggerConsole): void {
   if (globalVar.isLogAddBreadcrumb) {
     breadcrumb.push({
       type: BREADCRUMBTYPES.CONSOLE,

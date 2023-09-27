@@ -1,7 +1,7 @@
 import { HandleEvents } from './handleEvents'
 import { htmlElementAsString, Severity } from '@hpf2e/sentinel-utils'
 import { EVENTTYPES, BREADCRUMBTYPES } from '@hpf2e/sentinel-shared'
-import { breadcrumb, handleConsole } from '@hpf2e/sentinel-core'
+import { breadcrumb } from '@hpf2e/sentinel-core'
 import { addReplaceHandler } from './replace'
 export function setupReplace(): void {
   addReplaceHandler({
@@ -16,6 +16,7 @@ export function setupReplace(): void {
     },
     type: EVENTTYPES.FETCH
   })
+  // 通过addEventListener 监听 error事件
   addReplaceHandler({
     callback: (error) => {
       HandleEvents.handleError(error)
@@ -24,8 +25,7 @@ export function setupReplace(): void {
   })
   addReplaceHandler({
     callback: (data) => {
-      // TODO: 需要将console.error 进行拦截并上报
-      handleConsole(data)
+      HandleEvents.handleConsole(data)
     },
     type: EVENTTYPES.CONSOLE
   })

@@ -1,6 +1,6 @@
 window.hpSentinel.init({
     // debug: true,
-    silentConsole: true,
+    // silentConsole: true,
     maxBreadcrumbs: 10,
     dsn: 'https://f2e-sentinel-test.hungrypanda.cn/api/v1/log/report',
     projectName: 'test',
@@ -15,6 +15,19 @@ window.hpSentinel.init({
       return response.code !== 1000
     }
   })
+
+  setTimeout(() => {
+    window.addEventListener('error', (a) => {
+      console.error(a)
+    })
+    // @ts-ignore
+    setTimeout(() => {
+      console.error('自定义错误AAA', 'BBBBB')
+      setTimeout(() => {
+        throw Error('自定义错误CCC')
+      }, 1000);
+    }, 1000);
+  }, 1000);
   
 
   // const slsTracker = new AliyunSlsTracker({
