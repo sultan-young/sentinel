@@ -1,6 +1,6 @@
 {
   "name": "f2e-sentinel",
-  "version": "2.1.67",
+  "version": "2.1.69",
   "description": "",
   "scripts": {
     "build": "node ./scripts/build.js",
