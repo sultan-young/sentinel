@@ -1,0 +1,19 @@
+{
+  "name": "@hpf2e/sentinel-angular",
+  "version": "2.1.67",
+  "description": "A SDK For Report Angular",
+  "author": "sultan",
+  "license": "MIT",
+  "main": "dist/angular.js",
+  "module": "dist/angular.esm.js",
+  "types": "dist/angular.d.ts",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@hpf2e/sentinel-core": "2.1.67",
+    "@hpf2e/sentinel-utils": "2.1.67",
+    "@hpf2e/sentinel-shared": "2.1.67",
+    "@hpf2e/sentinel-browser": "2.1.67"
+  }
+}

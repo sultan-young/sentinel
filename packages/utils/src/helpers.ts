@@ -171,7 +171,7 @@ export function unknownToString(target: unknown): string {
   if (variableTypeDetection.isUndefined(target)) {
     return 'undefined'
   }
-  return JSON.stringify(target)
+  return safeStringify(target)
 }
 
 export function getBigVersion(version: string) {
@@ -265,4 +265,39 @@ export function parseErrorString(str: string): IntegrationError {
     name,
     stack
   }
+}
+
+
+/**
+ * Trim excess whitespace off the beginning and end of a string
+ *
+ * @param {String} str The String to trim
+ *
+ * @returns {String} The String freed of excess whitespace
+ */
+const trim = (str) => str.trim ?
+  str.trim() : str.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
+
+/**
+ * 将一个类型进行序列化
+ * of the input
+ *
+ * @param {any} rawValue - The value to be stringified.
+ * @param {Function} parser - A function that parses a string into a JavaScript object.
+ * @param {Function} encoder - A function that takes a value and returns a string.
+ *
+ * @returns {string} A stringified version of the rawValue.
+ */
+export function safeStringify(rawValue, encoder?: any) {
+  if (!variableTypeDetection.isString(rawValue)) {
+    try {
+      return (encoder || JSON.stringify)(rawValue);
+    } catch (e) {
+      if (e.name !== 'SyntaxError') {
+        throw e;
+      }
+    }
+  }
+
+  return rawValue;
 }

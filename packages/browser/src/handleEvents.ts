@@ -154,26 +154,42 @@ const HandleEvents = {
     handleConsoleBreadcrumb(data)
     const { args, level } = data;
     if (level === 'error') {  
+      if (!args?.length) return;
+      
       console.log(`%c捕获到错误`, 'color: blue; font-weight: bold;', args)
-      /**
-       * 处理由 error event触发的事件并被console.error包装后抛出的case
-       * window.addEventListener('error', (values) => {
-       *   console.error(values)
-       * })
-       */
-      if (args.length === 1 && args[0] instanceof ErrorEvent) {
-        this.handleError(args[0])
+      if (args.length === 1) {
+        /**
+        * 处理由 error event触发的事件并被console.error包装后抛出的case
+        * window.addEventListener('error', (values) => {
+        *   console.error(values)
+        * })
+        */
+        if (args[0] instanceof ErrorEvent) {
+          this.handleError(args[0])
+        }
+        // 捕获 console.error('错误')
+        if (typeof args[0] === 'string') {
+          log({
+            message: args[0],
+            tag: 'console.error',
+            level: Severity.Normal,
+            type: ERRORTYPES.LOG_ERROR,
+          })
+        }
       } 
       /**
       * 此时为自定义上报，例如
       * throw Error('发生错误')
       */
       else {
+        let ex = args.find(arg => isError(arg)) as Error;
+        if (!ex) return;
         log({
-          message: args,
+          message: ex.message,
           tag: 'console.error',
           level: Severity.Normal,
           type: ERRORTYPES.LOG_ERROR,
+          ex,
         })
       }
     }
@@ -181,3 +197,17 @@ const HandleEvents = {
 }
 
 export { HandleEvents }
+
+
+// ERROR,Error: Uncaught (in promise): Error: 错误
+// Error: 错误
+//     at new ExampleComponent (http://admin-dev.hungrypanda.cn:4200/example.module.js:1372:15)
+//     at NodeInjectorFactory.ExampleComponent_Factory [as factory] (ng:///ExampleComponent/ɵfac.js:4:10)
+//     at getNodeInjectable (http://admin-dev.hungrypanda.cn:4200/vendor.js:83673:44)
+//     at instantiateRootComponent (http://admin-dev.hungrypanda.cn:4200/vendor.js:90292:23)
+//     at createRootComponent (http://admin-dev.hungrypanda.cn:4200/vendor.js:92396:23)
+//     at ComponentFactory.create (http://admin-dev.hungrypanda.cn:4200/vendor.js:101753:25)
+//     at ViewContainerRef.createComponent (http://admin-dev.hungrypanda.cn:4200/vendor.js:103017:47)
+//     at RouterOutlet.activateWith (http://admin-dev.hungrypanda.cn:4200/vendor.js:131850:36)
+//     at ActivateRoutes.activateRoutes (http://admin-dev.hungrypanda.cn:4200/vendor.js:131443:28)
+//     at http://admin-dev.hungrypanda.cn:4200/vendor.js:131390:12
