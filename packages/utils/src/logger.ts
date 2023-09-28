@@ -34,7 +34,7 @@ export class Logger {
     if (!this.enabled) {
       return
     }
-    this._console.log(`${PREFIX}[Log]:`, ...args)
+    this._console.log(...args, `- ${PREFIX}[Log]`)
   }
   warn(...args: any[]): void {
     if (!this.enabled) {

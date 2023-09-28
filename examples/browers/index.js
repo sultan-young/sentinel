@@ -1,5 +1,5 @@
 window.hpSentinel.init({
-    // debug: true,
+    debug: true,
     // silentConsole: true,
     bnsInfo: {
       projectName: '测试项目'
@@ -18,9 +18,21 @@ window.hpSentinel.init({
     }
   })
 
+  window.hpSentinel.updateBnsInfo({
+    userNick: '测试用户'
+  })
+  
+
   setTimeout(() => {
-    window.addEventListener('error', (a) => {
-      console.error(a)
+    // window.addEventListener('error', (a) => {
+    //   console.log('a: ', a);
+    //   // console.error(a)
+    // })
+    // window.onerror = (b, c, d, e, f) => {
+    //   console.log('b: ', b, c, d, e, f);
+    // }
+    window.addEventListener('unhandledrejection', (c) => {
+      console.log('c:', c)
     })
     // @ts-ignore
     setTimeout(() => {

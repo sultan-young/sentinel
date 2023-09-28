@@ -142,7 +142,7 @@ export class TransportData {
     }
   }, 300)
   
-  updateBnsInfo = (bnsInfo: BnsInfo) => {
+  updateBnsInfo = (bnsInfo: Optional<BnsInfo>) => {
     Object.assign(this.bnsInfo, bnsInfo)
     return this.bnsInfo;
   }

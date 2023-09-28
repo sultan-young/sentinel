@@ -155,7 +155,7 @@ const HandleEvents = {
     const { args, level } = data;
     if (level === 'error') {  
       if (!args?.length) return;
-      logger.log(`%c捕获到错误`, 'color: blue; font-weight: bold;', args)
+      logger.log(`%c捕获到错误`, 'color: blue; font-weight: bold;', data)
 
       /**
         * 处理由 error event触发的事件并被console.error包装后抛出的case
@@ -164,7 +164,7 @@ const HandleEvents = {
         *   console.error(values)
         * })
         */
-      const ErrorEvent = args.find(arg => arg instanceof ErrorEvent);
+      const ErrorEvent = args.find(arg => Object.prototype.toString.call(ErrorEvent) === '[object ErrorEvent]');
       if (ErrorEvent) {
         this.handleError(ErrorEvent);
         return
