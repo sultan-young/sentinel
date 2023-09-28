@@ -3,7 +3,6 @@ import { BreadcrumbPushData } from './breadcrumb'
 import { DeviceInfo, EActionType } from './track'
 
 export interface SdkInfo {
-  projectName: string
   sdkVersion: string
   sdkName: string
 }
@@ -13,6 +12,8 @@ export interface TransportDataType {
   breadcrumb?: BreadcrumbPushData[]
   data?: FinalReportType
   deviceInfo?: DeviceInfo
+  bnsInfo?: BnsInfo
+  commonInfo?: CommonInfo
 }
 
 export type FinalReportType = ReportDataType | TrackReportData
@@ -20,6 +21,18 @@ export type FinalReportType = ReportDataType | TrackReportData
 interface ICommonDataType {
   // 是否是埋点数据
   isTrackData?: boolean
+}
+
+// SDK可以自动收集到的业务系统的信息
+interface CommonInfo {
+}
+
+// 由使用方手动上报的信息
+export interface BnsInfo {
+  projectName: string
+  username?: string; // 用户账号或者用户工号
+  userNick?: string; // 用户姓名
+  userPhone?: string // 用户联系方式 
 }
 
 export interface ReportDataType extends ICommonDataType {

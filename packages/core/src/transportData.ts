@@ -2,7 +2,7 @@ import { _support, validateOption, logger, isBrowserEnv, isWxMiniEnv, variableTy
 import { createErrorId } from './errorId'
 import { SDK_NAME, SDK_VERSION } from '@hpf2e/sentinel-shared'
 import { breadcrumb } from './breadcrumb'
-import { SdkInfo, TransportDataType, EMethods, InitOptions, isReportDataType, DeviceInfo, FinalReportType } from '@hpf2e/sentinel-types'
+import { SdkInfo, TransportDataType, EMethods, InitOptions, isReportDataType, DeviceInfo, FinalReportType, BnsInfo } from '@hpf2e/sentinel-types'
 /**
  * 用来传输数据类，包含img标签、xhr请求
  * 功能：支持img请求和xhr请求、可以断点续存（保存在localstorage），
@@ -18,7 +18,9 @@ export class TransportData {
   configReportWxRequest: unknown = null
   useImgUpload = false
   errorDsn = ''
-  projectName = 'unknown'
+  bnsInfo = {
+    projectName: 'unKnow'
+  }
   constructor() {
     this.queue = new Queue()
   }
@@ -79,7 +81,6 @@ export class TransportData {
   }
   getSdkInfo(): SdkInfo {
     const result: SdkInfo = {
-      projectName: this.projectName,
       sdkVersion: SDK_VERSION,
       sdkName: SDK_NAME
     }
@@ -90,7 +91,8 @@ export class TransportData {
       sdkInfo: this.getSdkInfo(),
       breadcrumb: breadcrumb.getStack(),
       data,
-      deviceInfo: this.getDeviceInfo()
+      deviceInfo: this.getDeviceInfo(),
+      bnsInfo: this.bnsInfo,
     }
   }
   isSdkTransportUrl(targetUrl: string): boolean {
@@ -102,7 +104,7 @@ export class TransportData {
   }
 
   bindOptions(options: InitOptions = {}): void {
-    options.projectName && (this.projectName = options.projectName)
+    options.bnsInfo && (this.bnsInfo = options.bnsInfo)
     options.dsn && (this.errorDsn = options.dsn)
     options.useImgUpload && (this.useImgUpload = options.useImgUpload)
     options.beforeDataReport && (this.beforeDataReport = options.beforeDataReport)
@@ -139,6 +141,11 @@ export class TransportData {
       return this.wxPost(result, dsn)
     }
   }, 300)
+  
+  updateBnsInfo = (bnsInfo: BnsInfo) => {
+    Object.assign(this.bnsInfo, bnsInfo)
+    return this.bnsInfo;
+  }
 }
 
 // transportData 给全局用，后续可能被其他后载入的transportData替代掉

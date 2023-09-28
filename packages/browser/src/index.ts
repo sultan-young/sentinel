@@ -2,7 +2,7 @@ export * from './handleEvents'
 export * from './load'
 export * from './replace'
 import { setupReplace } from './load'
-import { initOptions, log } from '@hpf2e/sentinel-core'
+import { initOptions, log, transportData } from '@hpf2e/sentinel-core'
 import { _global } from '@hpf2e/sentinel-utils'
 import { SDK_VERSION, SDK_NAME } from '@hpf2e/sentinel-shared'
 import { InitOptions } from '@hpf2e/sentinel-types'
@@ -16,4 +16,7 @@ function init(options: InitOptions = {}): void {
   webInit(options)
 }
 
-export { SDK_VERSION, SDK_NAME, init, log }
+const updateBnsInfo = transportData.updateBnsInfo;
+
+
+export { SDK_VERSION, SDK_NAME, init, log, updateBnsInfo }

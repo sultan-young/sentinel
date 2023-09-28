@@ -1,9 +1,11 @@
 window.hpSentinel.init({
     // debug: true,
     // silentConsole: true,
+    bnsInfo: {
+      projectName: '测试项目'
+    },
     maxBreadcrumbs: 10,
     dsn: 'https://f2e-sentinel-test.hungrypanda.cn/api/v1/log/report',
-    projectName: 'test',
     throttleDelayTime: 0,
     onRouteChange(from, to) {
       console.log('onRouteChange: _', from, to);

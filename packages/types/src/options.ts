@@ -1,6 +1,6 @@
 import { Breadcrumb } from '@hpf2e/sentinel-core'
 import { BreadcrumbPushData } from './breadcrumb'
-import { TransportDataType } from './transportData'
+import { BnsInfo, TransportDataType } from './transportData'
 type CANCEL = null | undefined | boolean
 
 export type HttpMethod = 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE' | 'OPTIONS'
@@ -33,7 +33,7 @@ export interface InitOptions extends SilentEventTypes, HooksTypes, WxSilentEvent
   /**
    * 项目唯一名称
    */
-  projectName?: string
+  bnsInfo?: BnsInfo
   /**
    * 使用img上报的方式，默认为false，默认是xhr的上报方式
    */
