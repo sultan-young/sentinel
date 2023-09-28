@@ -12,7 +12,6 @@ export interface TransportDataType {
   sdkInfo: SdkInfo
   breadcrumb?: BreadcrumbPushData[]
   data?: FinalReportType
-  record?: any[]
   deviceInfo?: DeviceInfo
 }
 

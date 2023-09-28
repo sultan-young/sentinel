@@ -10,7 +10,6 @@ export interface SentinelSupport {
   breadcrumb: Breadcrumb
   transportData: TransportData
   replaceFlag: { [key in EVENTTYPES]?: boolean }
-  record?: any[]
   deviceInfo?: DeviceInfo
   options?: Options
   track?: any

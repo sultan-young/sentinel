@@ -31,13 +31,6 @@ export class TransportData {
     }
     this.queue.addFn(requestFun)
   }
-  getRecord(): any[] {
-    const recordData = _support.record
-    if (recordData && variableTypeDetection.isArray(recordData) && recordData.length > 2) {
-      return recordData
-    }
-    return []
-  }
   getDeviceInfo(): DeviceInfo | any {
     return _support.deviceInfo || {}
   }
@@ -97,7 +90,6 @@ export class TransportData {
       sdkInfo: this.getSdkInfo(),
       breadcrumb: breadcrumb.getStack(),
       data,
-      record: this.getRecord(),
       deviceInfo: this.getDeviceInfo()
     }
   }
