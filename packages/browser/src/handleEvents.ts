@@ -1,6 +1,6 @@
 import { BREADCRUMBTYPES, ERRORTYPES, ERROR_TYPE_RE, HTTP_CODE } from '@hpf2e/sentinel-shared'
 import { transportData, breadcrumb, resourceTransform, httpTransform, options, handleConsoleBreadcrumb, log } from '@hpf2e/sentinel-core';
-import { getLocationHref, getTimestamp, isError, parseUrlToObj, extractErrorStack, unknownToString, Severity, isHttpFail } from '@hpf2e/sentinel-utils'
+import { getLocationHref, getTimestamp, isError, parseUrlToObj, extractErrorStack, unknownToString, Severity, isHttpFail, variableTypeDetection, logger } from '@hpf2e/sentinel-utils'
 import { ReportDataType, Replace, SENTINELHttp, ResourceErrorTarget } from '@hpf2e/sentinel-types'
 
 
@@ -138,7 +138,7 @@ const HandleEvents = {
     if (isError(ev.reason)) {
       data = {
         ...data,
-        ...extractErrorStack(ev.reason, Severity.Low)
+        ...extractErrorStack(ev.reason, Severity.Normal)
       }
     }
     breadcrumb.push({
@@ -155,59 +155,52 @@ const HandleEvents = {
     const { args, level } = data;
     if (level === 'error') {  
       if (!args?.length) return;
-      
-      console.log(`%c捕获到错误`, 'color: blue; font-weight: bold;', args)
-      if (args.length === 1) {
-        /**
+      logger.log(`%c捕获到错误`, 'color: blue; font-weight: bold;', args)
+
+      /**
         * 处理由 error event触发的事件并被console.error包装后抛出的case
+        * ErrorEvent 事件对象在脚本发生错误时产生，它可以提供发生错误的脚本文件的文件名，以及发生错误时所在的行号等信息。
         * window.addEventListener('error', (values) => {
         *   console.error(values)
         * })
         */
-        if (args[0] instanceof ErrorEvent) {
-          this.handleError(args[0])
-        }
-        // 捕获 console.error('错误')
-        if (typeof args[0] === 'string') {
-          log({
-            message: args[0],
-            tag: 'console.error',
-            level: Severity.Normal,
-            type: ERRORTYPES.LOG_ERROR,
-          })
-        }
-      } 
+      const ErrorEvent = args.find(arg => arg instanceof ErrorEvent);
+      if (ErrorEvent) {
+        this.handleError(ErrorEvent);
+        return
+      }
+
       /**
       * 此时为自定义上报，例如
       * throw Error('发生错误')
+      * console.log('error', Error('发生错误'))
       */
-      else {
-        let ex = args.find(arg => isError(arg)) as Error;
-        if (!ex) return;
+      const Error = args.find(arg => isError(arg)) as Error;
+      if (Error) {
         log({
-          message: ex.message,
+          message: Error.message,
           tag: 'console.error',
           level: Severity.Normal,
-          type: ERRORTYPES.LOG_ERROR,
-          ex,
+          type: ERRORTYPES.CONSOLE_ERROR,
+          ex: Error,
         })
+        return
+      }
+
+
+      // 捕获 console.error('错误')
+      const isStringError = args.every(arg => variableTypeDetection.isString(arg));
+      if (isStringError) {
+        log({
+          message: args.join('——'),
+          tag: 'console.error',
+          level: Severity.Low,
+          type: ERRORTYPES.CONSOLE_ERROR,
+        })
+        return
       }
     }
   }
 }
 
 export { HandleEvents }
-
-
-// ERROR,Error: Uncaught (in promise): Error: 错误
-// Error: 错误
-//     at new ExampleComponent (http://admin-dev.hungrypanda.cn:4200/example.module.js:1372:15)
-//     at NodeInjectorFactory.ExampleComponent_Factory [as factory] (ng:///ExampleComponent/ɵfac.js:4:10)
-//     at getNodeInjectable (http://admin-dev.hungrypanda.cn:4200/vendor.js:83673:44)
-//     at instantiateRootComponent (http://admin-dev.hungrypanda.cn:4200/vendor.js:90292:23)
-//     at createRootComponent (http://admin-dev.hungrypanda.cn:4200/vendor.js:92396:23)
-//     at ComponentFactory.create (http://admin-dev.hungrypanda.cn:4200/vendor.js:101753:25)
-//     at ViewContainerRef.createComponent (http://admin-dev.hungrypanda.cn:4200/vendor.js:103017:47)
-//     at RouterOutlet.activateWith (http://admin-dev.hungrypanda.cn:4200/vendor.js:131850:36)
-//     at ActivateRoutes.activateRoutes (http://admin-dev.hungrypanda.cn:4200/vendor.js:131443:28)
-//     at http://admin-dev.hungrypanda.cn:4200/vendor.js:131390:12
