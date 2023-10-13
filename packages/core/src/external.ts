@@ -27,7 +27,7 @@ interface LogTypes {
  * @export
  * @param {LogTypes} { message = 'emptyMsg', tag = '', level = Severity.Critical, ex = '' }
  */
-export function log({ message = 'emptyMsg', tag = '', level = Severity.Critical, ex = '', type = ERRORTYPES.LOG_ERROR }: LogTypes): void {
+export function report({ message = 'emptyMsg', tag = '', level = Severity.Critical, ex = '', type = ERRORTYPES.LOG_ERROR }: LogTypes): void {
   let errorInfo = {}
   if (isError(ex)) {
     errorInfo = extractErrorStack(ex, level)

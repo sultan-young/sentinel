@@ -1,6 +1,6 @@
 {
   "name": "@hpf2e/sentinel-angular",
-  "version": "2.1.71",
+  "version": "2.1.73",
   "description": "A SDK For Report Angular",
   "author": "sultan",
   "license": "MIT",
@@ -11,9 +11,9 @@
     "dist"
   ],
   "dependencies": {
-    "@hpf2e/sentinel-core": "2.1.71",
-    "@hpf2e/sentinel-utils": "2.1.71",
-    "@hpf2e/sentinel-shared": "2.1.71",
-    "@hpf2e/sentinel-browser": "2.1.71"
+    "@hpf2e/sentinel-core": "2.1.73",
+    "@hpf2e/sentinel-utils": "2.1.73",
+    "@hpf2e/sentinel-shared": "2.1.73",
+    "@hpf2e/sentinel-browser": "2.1.73"
   }
 }

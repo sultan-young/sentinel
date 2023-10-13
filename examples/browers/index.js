@@ -5,7 +5,8 @@ window.hpSentinel.init({
       projectName: '测试项目'
     },
     maxBreadcrumbs: 10,
-    dsn: 'https://f2e-sentinel-test.hungrypanda.cn/api/v1/log/report',
+    // dsn: 'https://f2e-sentinel-test.hungrypanda.cn/api/v1/log/report',
+    dsn: 'http://10.1.5.222:7001/api/h5/v1/log/report',
     throttleDelayTime: 0,
     onRouteChange(from, to) {
       console.log('onRouteChange: _', from, to);

@@ -15,7 +15,7 @@
     <button id="exceptionReq" onclick="onClickXhrError()">xhr异常请求</button>
     <button id="normalFetch" onclick="onClickNativeFetch()">Fetch正常请求</button>
     <button id="exceptionFetch" onclick="onClickNativeErrorFetch()">Fetch异常请求</button>
-    <button id="logUpload" onclick="mitoLog()">log上报</button>
+    <button id="logUpload" onclick="customReport()">log上报</button>
     <button id="promiseError" onclick="promiseError()">promiseError</button>
     <button id="hashChange" onclick="hashChange()">改变hash</button>
 
@@ -38,8 +38,8 @@
         })
 
       }
-      function mitoLog() {
-        MITO.log({ message: { one: 111 }, tag: '测试' })
+      function customReport() {
+        hpSentinel.report({ message: { one: 111 }, tag: '测试' })
       }
       function hashChange() {
         window.location.hash = 'xxx'

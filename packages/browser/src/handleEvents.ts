@@ -1,5 +1,5 @@
 import { BREADCRUMBTYPES, ERRORTYPES, ERROR_TYPE_RE, HTTP_CODE } from '@hpf2e/sentinel-shared'
-import { transportData, breadcrumb, resourceTransform, httpTransform, options, handleConsoleBreadcrumb, log } from '@hpf2e/sentinel-core';
+import { transportData, breadcrumb, resourceTransform, httpTransform, options, handleConsoleBreadcrumb, report } from '@hpf2e/sentinel-core';
 import { getLocationHref, getTimestamp, isError, parseUrlToObj, extractErrorStack, unknownToString, Severity, isHttpFail, variableTypeDetection, logger } from '@hpf2e/sentinel-utils'
 import { ReportDataType, Replace, SENTINELHttp, ResourceErrorTarget } from '@hpf2e/sentinel-types'
 
@@ -177,7 +177,7 @@ const HandleEvents = {
       */
       const Error = args.find(arg => isError(arg)) as Error;
       if (Error) {
-        log({
+        report({
           message: Error.message,
           tag: 'console.error',
           level: Severity.Normal,
@@ -191,7 +191,7 @@ const HandleEvents = {
       // 捕获 console.error('错误')
       const isStringError = args.every(arg => variableTypeDetection.isString(arg));
       if (isStringError) {
-        log({
+        report({
           message: args.join('——'),
           tag: 'console.error',
           level: Severity.Low,
