@@ -15,6 +15,6 @@ export function init(options: WxInitOptions = {}) {
     options: wxOptions
   })
   setupReplace()
-  Object.assign(wx, { sentinelLog: log, SDK_NAME, SDK_VERSION })
+  Object.assign(wx, { sentinelReport: report, SDK_NAME, SDK_VERSION })
 }
 export { report, sendTrackData, track }

@@ -116,7 +116,7 @@ export class TransportData {
    * @param data 错误上报数据格式
    * @returns
    */
-  send = throttle(async (data: FinalReportType) => {
+  send = throttle(async (data: FinalReportType, isSdkAutoReport: boolean = true) => {
     let dsn = ''
     
     if (isReportDataType(data)) {
@@ -127,7 +127,11 @@ export class TransportData {
       }
     }
 
-    const result = await this.beforePost(data)
+    const result = await this.beforePost({
+      ...data,
+      isSdkAutoReport,
+    })
+
     if (!result) return
     if (typeof this.configReportUrl === 'function') {
       dsn = this.configReportUrl(result, dsn)

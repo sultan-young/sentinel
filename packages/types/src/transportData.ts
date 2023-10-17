@@ -21,6 +21,8 @@ export type FinalReportType = ReportDataType | TrackReportData
 interface ICommonDataType {
   // 是否是埋点数据
   isTrackData?: boolean
+  // 是否sdk自动上报
+  isSdkAutoReport?: boolean
 }
 
 // SDK可以自动收集到的业务系统的信息

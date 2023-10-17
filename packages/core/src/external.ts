@@ -48,5 +48,5 @@ export function report({ message = 'emptyMsg', tag = '', level = Severity.Critic
     data: message,
     level: Severity.fromString(level.toString())
   })
-  transportData.send(error);
+  transportData.send(error, false);
 }

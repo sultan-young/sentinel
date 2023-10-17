@@ -1,19 +1,18 @@
 window.hpSentinel.init({
-    debug: true,
+    // debug: true,
     // silentConsole: true,
     bnsInfo: {
       projectName: '测试项目'
     },
     maxBreadcrumbs: 10,
-    // dsn: 'https://f2e-sentinel-test.hungrypanda.cn/api/v1/log/report',
-    dsn: 'http://10.1.5.222:7001/api/h5/v1/log/report',
+    dsn: 'https://f2e-sentinel-test.hungrypanda.cn/api/h5/v1/log/report',
+    // dsn: 'http://10.1.5.222:7001/api/h5/v1/log/report',
     throttleDelayTime: 0,
     onRouteChange(from, to) {
       console.log('onRouteChange: _', from, to);
     },
     isRequestFail(responseText) {
       const response = JSON.parse(responseText)
-      console.log('response: ', response);
 
       return response.code !== 1000
     }

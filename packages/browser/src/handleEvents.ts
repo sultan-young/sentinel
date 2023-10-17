@@ -184,6 +184,7 @@ const HandleEvents = {
           type: ERRORTYPES.CONSOLE_ERROR,
           ex: Error,
         })
+        logger.log('捕获到Error', args)
         return
       }
 
@@ -197,6 +198,7 @@ const HandleEvents = {
           level: Severity.Low,
           type: ERRORTYPES.CONSOLE_ERROR,
         })
+        logger.log('捕获到console.error', args)
         return
       }
     }
