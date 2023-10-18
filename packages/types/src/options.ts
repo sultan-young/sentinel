@@ -1,6 +1,7 @@
 import { Breadcrumb } from '@hpf2e/sentinel-core'
 import { BreadcrumbPushData } from './breadcrumb'
 import { BnsInfo, TransportDataType } from './transportData'
+import { IAnyObject } from './common'
 type CANCEL = null | undefined | boolean
 
 export type HttpMethod = 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE' | 'OPTIONS'
@@ -81,7 +82,7 @@ export interface InitOptions extends SilentEventTypes, HooksTypes, WxSilentEvent
    * 这里一般用来判断业务接口是否失败。
    * 只有响应体为json结构的才会进入这里
    */
-  requestReportStrategy?: {reg: RegExp, handler: (response: Object) => boolean}[];
+  requestReportStrategy?: {reg: RegExp, handler: (response: IAnyObject) => boolean}[];
 }
 
 export interface HooksTypes {

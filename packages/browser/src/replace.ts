@@ -221,7 +221,7 @@ function consoleReplace(): void {
     replaceOld(_global.console, level, function (originalConsole: () => any): Function {
       return function (...args: any[]): void {
         if (originalConsole) {
-          triggerHandlers(EVENTTYPES.CONSOLE, { ...args, level })
+          triggerHandlers(EVENTTYPES.CONSOLE, { args, level })
           originalConsole.apply(_global.console, args)
         }
       }

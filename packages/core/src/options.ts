@@ -1,11 +1,11 @@
-import { InitOptions } from '@hpf2e/sentinel-types'
+import { IAnyObject, InitOptions } from '@hpf2e/sentinel-types'
 import { generateUUID, toStringValidateOption, validateOption, _support, setSilentFlag, logger, Logger } from '@hpf2e/sentinel-utils'
 import { Breadcrumb, breadcrumb } from './breadcrumb'
 import { TransportData, transportData } from './transportData'
 
 export class Options {
   beforeAppAjaxSend: Function = () => {}
-  requestReportStrategy: {reg: RegExp, handler: (response: Object) => boolean}[]
+  requestReportStrategy: {reg: RegExp, handler: (response: IAnyObject) => boolean}[]
   enableTraceId: Boolean
   filterXhrUrlRegExp: RegExp
   includeHttpUrlTraceIdRegExp: RegExp
