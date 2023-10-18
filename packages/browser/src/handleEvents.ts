@@ -3,16 +3,27 @@ import { transportData, breadcrumb, resourceTransform, httpTransform, options, h
 import { getLocationHref, getTimestamp, isError, parseUrlToObj, extractErrorStack, unknownToString, Severity, isHttpFail, variableTypeDetection, logger } from '@hpf2e/sentinel-utils'
 import { ReportDataType, Replace, SENTINELHttp, ResourceErrorTarget } from '@hpf2e/sentinel-types'
 
-
 const HandleEvents = {
   /**
    * 处理xhr、fetch回调
    */
   handleHttp(data: SENTINELHttp, type: BREADCRUMBTYPES): void {
     let isError = isHttpFail(data.status);
-    if (!isError && typeof options.isRequestFail === 'function') {
-      isError = options.isRequestFail(data.responseText);
+    
+    if (!isError && Array.isArray(options.requestReportStrategy)) {
+      const requestUrl = data.url;
+      if (!requestUrl) return;
+
+      for (let strategy of options.requestReportStrategy) {
+        console.log(strategy, requestUrl, strategy.reg.test(requestUrl), strategy.handler(data.responseJson))
+        if (strategy.reg.test(requestUrl)) {
+          isError = strategy.handler(data.responseJson);
+          // 只匹配命中的第一个策略
+          break;
+        }
+      }
     }
+
     const result = httpTransform(data)
     breadcrumb.push({
       type,

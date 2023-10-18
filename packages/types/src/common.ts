@@ -21,6 +21,7 @@ export interface SENTINELHttp {
   sTime?: number
   elapsedTime?: number
   responseText?: any
+  responseJson?: any
   time?: number
   isSdkUrl?: boolean
   // for wx

@@ -79,9 +79,9 @@ export interface InitOptions extends SilentEventTypes, HooksTypes, WxSilentEvent
   /**
    * 用来判断一个请求是否失败，默认会以http请求的Status code进行判断
    * 这里一般用来判断业务接口是否失败。
-   * 注意📢：这里不一定都会是接口请求，在一些第三方库里，可能会手动触发get请求来获取资源，这时候也会被拦截到这里
+   * 只有响应体为json结构的才会进入这里
    */
-  isRequestFail?(responseText: string): boolean;
+  requestReportStrategy?: {reg: RegExp, handler: (response: Object) => boolean}[];
 }
 
 export interface HooksTypes {

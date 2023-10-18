@@ -99,11 +99,13 @@ function xhrReplace(): void {
         this.sentinel_xhr.reqData = args[0]
         const eTime = getTimestamp()
         this.sentinel_xhr.time = this.sentinel_xhr.sTime
-        this.sentinel_xhr.status = status
-        if (['', 'json', 'text'].indexOf(responseType) !== -1) {
-          this.sentinel_xhr.responseText = typeof response === 'object' ? JSON.stringify(response) : response
+        this.sentinel_xhr.status = status;
+        const contentType = this.getResponseHeader('Content-Type');
+        if (contentType && contentType.includes('application/json')) {
+         this.sentinel_xhr.responseJson = JSON.parse(response)
         }
-        this.sentinel_xhr.elapsedTime = eTime - this.sentinel_xhr.sTime
+        this.sentinel_xhr.responseText = response
+        this.sentinel_xhr.elapsedTime = eTime - this.sentinel_xhr.sTime;
         triggerHandlers(EVENTTYPES.XHR, this.sentinel_xhr)
       })
       originalSend.apply(this, args)
@@ -141,6 +143,13 @@ function fetchReplace(): void {
 
       return originalFetch.apply(_global, [url, config]).then(
         (res: Response) => {
+          if (method === EMethods.Post && transportData.isSdkTransportUrl(url)) {
+            return res
+          }
+          if (isFilterHttpUrl(url)) {
+            return res;
+          }
+
           const tempRes = res.clone()
           const eTime = getTimestamp()
           handlerData = {
@@ -150,12 +159,18 @@ function fetchReplace(): void {
             // statusText: tempRes.statusText,
             time: sTime
           }
-          tempRes.text().then((data) => {
-            if (method === EMethods.Post && transportData.isSdkTransportUrl(url)) return
-            if (isFilterHttpUrl(url)) return
-            handlerData.responseText = tempRes.status > HTTP_CODE.UNAUTHORIZED && data
+
+          const contentType = res.headers.get('Content-Type');
+          let promiseTasks = [tempRes.text()];
+          if (contentType && contentType.includes('application/json')) {
+            promiseTasks.push(res.clone().json())
+          }
+          Promise.all(promiseTasks).then(([rawValue, jsonValue]) => {
+            handlerData.responseText = rawValue;
+            handlerData.responseJson = jsonValue;
             triggerHandlers(EVENTTYPES.FETCH, handlerData)
           })
+
           return res
         },
         (err: Error) => {
@@ -206,7 +221,7 @@ function consoleReplace(): void {
     replaceOld(_global.console, level, function (originalConsole: () => any): Function {
       return function (...args: any[]): void {
         if (originalConsole) {
-          triggerHandlers(EVENTTYPES.CONSOLE, { args, level })
+          triggerHandlers(EVENTTYPES.CONSOLE, { ...args, level })
           originalConsole.apply(_global.console, args)
         }
       }
