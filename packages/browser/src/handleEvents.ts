@@ -15,7 +15,6 @@ const HandleEvents = {
       if (!requestUrl) return;
 
       for (let strategy of options.requestReportStrategy) {
-        console.log(strategy, requestUrl, strategy.reg.test(requestUrl), strategy.handler(data.responseJson))
         if (strategy.reg.test(requestUrl)) {
           isError = strategy.handler(data.responseJson);
           // 只匹配命中的第一个策略

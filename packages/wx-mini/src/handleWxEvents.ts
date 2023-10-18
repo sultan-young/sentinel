@@ -234,9 +234,20 @@ const HandleNetworkEvents = {
       level: Severity.Info
     })
     let isError = isHttpFail(data.status);
-    if (!isError && typeof sdkOptions.isRequestFail === 'function') {
-      isError = sdkOptions.isRequestFail(data.responseText);
+
+    if (!isError && Array.isArray(sdkOptions.requestReportStrategy)) {
+      const requestUrl = data.url;
+      if (!requestUrl) return;
+
+      for (let strategy of sdkOptions.requestReportStrategy) {
+        if (strategy.reg.test(requestUrl)) {
+          isError = strategy.handler(data.responseJson);
+          // 只匹配命中的第一个策略
+          break;
+        }
+      }
     }
+
     if (isError) {
       breadcrumb.push({
         type,
