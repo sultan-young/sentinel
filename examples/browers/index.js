@@ -24,26 +24,27 @@ window.hpSentinel.init({
     userNick: '测试用户'
   })
   
+  window.addEventListener('error', (a) => {
+    console.log('12313: ', a);
+    // console.error(a)
+  }, true)
+  // window.onerror = (b, c, d, e, f) => {
+  //   console.log('b: ', b, c, d, e, f);
+  // }
+  window.addEventListener('unhandledrejection', (c) => {
+    console.log('c:', c)
+  })
 
-  setTimeout(() => {
-    // window.addEventListener('error', (a) => {
-    //   console.log('a: ', a);
-    //   // console.error(a)
-    // })
-    // window.onerror = (b, c, d, e, f) => {
-    //   console.log('b: ', b, c, d, e, f);
-    // }
-    window.addEventListener('unhandledrejection', (c) => {
-      console.log('c:', c)
-    })
-    // @ts-ignore
-    setTimeout(() => {
-      console.error('自定义错误AAA', 'BBBBB')
-      setTimeout(() => {
-        throw Error('自定义错误CCC')
-      }, 1000);
-    }, 1000);
-  }, 1000);
+
+  // setTimeout(() => {
+  //   // @ts-ignore
+  //   setTimeout(() => {
+  //     console.error('自定义错误AAA', 'BBBBB')
+  //     setTimeout(() => {
+  //       throw Error('自定义错误CCC')
+  //     }, 1000);
+  //   }, 1000);
+  // }, 1000);
   
 
   // const slsTracker = new AliyunSlsTracker({
