@@ -161,8 +161,18 @@ const HandleEvents = {
   },
   // 处理console上报的错误
   handleConsole(data: {args: any[], level: string}): void {
-    handleConsoleBreadcrumb(data)
     const { args, level } = data;
+
+    if (Array.isArray(args)) {
+      data.args = args.map(arg => {
+          if (arg instanceof Error) {
+              return arg.toString()
+          }
+          return arg
+      })
+    }
+    
+    handleConsoleBreadcrumb(data)
     if (level === 'error') {  
       if (!args?.length) return;
       logger.log(`%c捕获到错误`, 'color: blue; font-weight: bold;', data)

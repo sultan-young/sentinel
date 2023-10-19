@@ -12,6 +12,7 @@ import { SdkInfo, TransportDataType, EMethods, InitOptions, isReportDataType, De
  */
 export class TransportData {
   queue: Queue
+  errorReportThrottlePool: {[props: number]:  any} = {}
   beforeDataReport: unknown = null
   configReportXhr: unknown = null
   configReportUrl: unknown = null
@@ -116,7 +117,7 @@ export class TransportData {
    * @param data 错误上报数据格式
    * @returns
    */
-  send = throttle(async (data: FinalReportType, isSdkAutoReport: boolean = true) => {
+  async send(data: FinalReportType, isSdkAutoReport: boolean = true) {
     let dsn = ''
     
     if (isReportDataType(data)) {
@@ -133,6 +134,19 @@ export class TransportData {
     })
 
     if (!result) return
+
+    // 判断该错误是否在最近300ms内发送过，防止该错误短时间内连续上报
+    if (isReportDataType(result.data)) {
+      const errorId = result.data.errorId
+      if (this.errorReportThrottlePool[errorId]) return;
+      
+      this.errorReportThrottlePool[errorId] = setTimeout(() => {
+        clearTimeout(this.errorReportThrottlePool[errorId]);
+        this.errorReportThrottlePool[errorId] = null;
+      }, 300);
+    }
+
+
     if (typeof this.configReportUrl === 'function') {
       dsn = this.configReportUrl(result, dsn)
       if (!dsn) return
@@ -144,7 +158,7 @@ export class TransportData {
     if (isWxMiniEnv) {
       return this.wxPost(result, dsn)
     }
-  }, 300)
+  }
   
   updateBnsInfo = (bnsInfo: Partial<BnsInfo>) => {
     Object.assign(this.bnsInfo, bnsInfo)

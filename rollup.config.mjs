@@ -78,7 +78,7 @@ const iifePackage = {
 		format: 'iife',
 		sourcemap: true,
 		name: 'hpSentinel',
-		plugins: [terser()],
+		// plugins: [terser()],
 	},
 }
 
