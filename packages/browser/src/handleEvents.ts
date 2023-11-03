@@ -45,27 +45,45 @@ const HandleEvents = {
   /**
    * 处理window的error的监听回到
    */
-  handleError(errorEvent: ErrorEvent) {
-    const target = errorEvent.target as ResourceErrorTarget
-    if (target.localName) {
-      // 资源加载错误 提取有用数据
-      const data = resourceTransform(errorEvent.target as ResourceErrorTarget)
-      breadcrumb.push({
-        type: BREADCRUMBTYPES.RESOURCE,
-        category: breadcrumb.getCategory(BREADCRUMBTYPES.RESOURCE),
-        data,
-        level: Severity.Error
-      })
-      return transportData.send(data)
+  handleError(errorEvent: ErrorEvent | Error | string) {
+    let result: ReportDataType;
+    if (errorEvent instanceof ErrorEvent) {
+      const target = errorEvent.target as ResourceErrorTarget
+      if (target.localName) {
+        // 资源加载错误 提取有用数据
+        const data = resourceTransform(errorEvent.target as ResourceErrorTarget)
+        breadcrumb.push({
+          type: BREADCRUMBTYPES.RESOURCE,
+          category: breadcrumb.getCategory(BREADCRUMBTYPES.RESOURCE),
+          data,
+          level: Severity.Error
+        })
+        return transportData.send(data)
+      }
+      // code error
+      const { message, filename, lineno, colno, error } = errorEvent
+      if (error && isError(error)) {
+        result = extractErrorStack(error, Severity.Normal)
+      }
+      // 处理SyntaxError，stack没有lineno、colno
+      if (!result) {
+        result = HandleEvents.handleNotErrorInstance(message, filename, lineno, colno)
+      }
     }
-    // code error
-    const { message, filename, lineno, colno, error } = errorEvent
-    let result: ReportDataType
-    if (error && isError(error)) {
-      result = extractErrorStack(error, Severity.Normal)
+
+    if (errorEvent instanceof Error) {
+      result = extractErrorStack(errorEvent, Severity.Normal)
     }
-    // 处理SyntaxError，stack没有lineno、colno
-    result || (result = HandleEvents.handleNotErrorInstance(message, filename, lineno, colno))
+
+    if (typeof errorEvent === 'string') {
+      result = {
+        level: Severity.Low,
+        url: getLocationHref(),
+        name: 'unKnow',
+        message: errorEvent,
+      }
+    }
+    
     result.type = ERRORTYPES.JAVASCRIPT_ERROR
     breadcrumb.push({
       type: BREADCRUMBTYPES.CODE_ERROR,
@@ -74,6 +92,7 @@ const HandleEvents = {
       level: Severity.Error
     })
     transportData.send(result)
+    
   },
   handleNotErrorInstance(message: string, filename: string, lineno: number, colno: number) {
     let name: string | ERRORTYPES = ERRORTYPES.UNKNOWN
@@ -161,67 +180,7 @@ const HandleEvents = {
   },
   // 处理console上报的错误
   handleConsole(data: {args: any[], level: string}): void {
-    const { args, level } = data;
-
-    if (Array.isArray(args)) {
-      data.args = args.map(arg => {
-          if (arg instanceof Error) {
-              return arg.toString()
-          }
-          return arg
-      })
-    }
-    
     handleConsoleBreadcrumb(data)
-    if (level === 'error') {  
-      if (!args?.length) return;
-      logger.log(`%c捕获到错误`, 'color: blue; font-weight: bold;', data)
-
-      /**
-        * 处理由 error event触发的事件并被console.error包装后抛出的case
-        * ErrorEvent 事件对象在脚本发生错误时产生，它可以提供发生错误的脚本文件的文件名，以及发生错误时所在的行号等信息。
-        * window.addEventListener('error', (values) => {
-        *   console.error(values)
-        * })
-        */
-      const ErrorEvent = args.find(arg => Object.prototype.toString.call(ErrorEvent) === '[object ErrorEvent]');
-      if (ErrorEvent) {
-        this.handleError(ErrorEvent);
-        return
-      }
-
-      /**
-      * 此时为自定义上报，例如
-      * throw Error('发生错误')
-      * console.log('error', Error('发生错误'))
-      */
-      const Error = args.find(arg => isError(arg)) as Error;
-      if (Error) {
-        report({
-          message: Error.message,
-          tag: 'console.error',
-          level: Severity.Normal,
-          type: ERRORTYPES.CONSOLE_ERROR,
-          ex: Error,
-        })
-        logger.log('捕获到Error', args)
-        return
-      }
-
-
-      // 捕获 console.error('错误')
-      const isStringError = args.every(arg => variableTypeDetection.isString(arg));
-      if (isStringError) {
-        report({
-          message: args.join('——'),
-          tag: 'console.error',
-          level: Severity.Low,
-          type: ERRORTYPES.CONSOLE_ERROR,
-        })
-        logger.log('捕获到console.error', args)
-        return
-      }
-    }
   }
 }
 
