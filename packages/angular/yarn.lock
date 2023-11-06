@@ -2,24 +2,24 @@
 # yarn lockfile v1
 
 
-"@angular/common@^16.2.12":
-  version "16.2.12"
-  resolved "https://registry.npmjs.org/@angular/common/-/common-16.2.12.tgz#aa1d1522701833f1998001caa1ac95c3ac11d077"
-  integrity sha512-B+WY/cT2VgEaz9HfJitBmgdk4I333XG/ybC98CMC4Wz8E49T8yzivmmxXB3OD6qvjcOB6ftuicl6WBqLbZNg2w==
+"@angular/common@^13":
+  version "13.4.0"
+  resolved "https://registry.npmjs.org/@angular/common/-/common-13.4.0.tgz#add32b9d9aa4597b72e23ba715d43b35d1e94c1c"
+  integrity sha512-DHbPqRaxW7GmnkxqZaaasgC5OaFTeTBrmr7MJUsqsSGePHWuJYWU4QS3Fn86zd/VESJgBGmq2aCDEUmzfjnRQA==
   dependencies:
     tslib "^2.3.0"
 
-"@angular/core@^16.2.12":
-  version "16.2.12"
-  resolved "https://registry.npmjs.org/@angular/core/-/core-16.2.12.tgz#f664204275ee5f5eb46bddc0867e7a514731605f"
-  integrity sha512-GLLlDeke/NjroaLYOks0uyzFVo6HyLl7VOm0K1QpLXnYvW63W9Ql/T3yguRZa7tRkOAeFZ3jw+1wnBD4O8MoUA==
+"@angular/core@^13":
+  version "13.4.0"
+  resolved "https://registry.npmjs.org/@angular/core/-/core-13.4.0.tgz#1418e3c2be203dd7d72494dd43279483757eacff"
+  integrity sha512-RE9KL7pRj+3lkJjdSR2uKmqiG0gqjnoVCMbSLG93pWrmzNIhElmlkiDaK39aMHGl836dc68Usv9CEisyVnRqHQ==
   dependencies:
     tslib "^2.3.0"
 
-"@angular/router@^16.2.12":
-  version "16.2.12"
-  resolved "https://registry.npmjs.org/@angular/router/-/router-16.2.12.tgz#2f4cae64ddb7f998832aa340dd3f843cfb85cbc8"
-  integrity sha512-aU6QnYSza005V9P3W6PpkieL56O0IHps96DjqI1RS8yOJUl3THmokqYN4Fm5+HXy4f390FN9i6ftadYQDKeWmA==
+"@angular/router@^13":
+  version "13.4.0"
+  resolved "https://registry.npmjs.org/@angular/router/-/router-13.4.0.tgz#f5ee4b4c463098c435a7c4b2a8a0d7c7ee3a1131"
+  integrity sha512-YlPAf3tPqD04rAMPAwW+XqFQaBXT9fY2Mh7J/9MXeyLZau59afBIcVNbeQxW5RxDajmfyFy437Qh22qFP2l0Hw==
   dependencies:
     tslib "^2.3.0"
 
@@ -67,7 +67,7 @@
     "@hpf2e/sentinel-shared" "2.1.81"
     "@hpf2e/sentinel-types" "2.1.81"
 
-rxjs@^7.8.1:
+rxjs@^7.5:
   version "7.8.1"
   resolved "https://registry.npmjs.org/rxjs/-/rxjs-7.8.1.tgz#6f6f3d99ea8044291efd92e7c7fcf562c4057543"
   integrity sha512-AA3TVj+0A2iuIoQkWEK/tqFjBq2j+6PO6Y0zJcvzLAFhEFIO3HL0vls9hWLncZbAAbK0mar7oZ4V079I/qPMxg==
