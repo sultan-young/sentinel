@@ -10,16 +10,19 @@
   "files": [
     "dist"
   ],
-  "peerDependencies": {
-    "@angular/common": ">= 12.x <= 17.x",
-    "@angular/core": ">= 12.x <= 17.x",
-    "@angular/router": ">= 12.x <= 17.x",
-    "rxjs": "^6.5.5 || ^7.x"
+  "scripts": {
+    "build": "echo ok"
   },
   "dependencies": {
     "@hpf2e/sentinel-browser": "2.1.81",
     "@hpf2e/sentinel-core": "2.1.81",
     "@hpf2e/sentinel-shared": "2.1.81",
     "@hpf2e/sentinel-utils": "2.1.81"
+  },
+  "peerDependencies": {
+    "@angular/common": "^16.2.12",
+    "@angular/core": "^16.2.12",
+    "@angular/router": "^16.2.12",
+    "rxjs": "^7.8.1"
   }
 }
